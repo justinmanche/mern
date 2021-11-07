@@ -1,0 +1,27 @@
+{
+  "name": "MERN frontend",
+  "version": "1.0.0",
+  "author": "Justin Manche",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "react": "^17",
+    "react-dom": "^17",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "classnames": "^2.3.1",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.4",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.62.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  }
+}
