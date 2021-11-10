@@ -1,7 +1,8 @@
 const webpack = require('webpack');
-const path              = require('path');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const resolve = dir => path.join(__dirname, dir);
 
@@ -19,6 +20,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   filename: 'index.html',
   inject: 'body',
 });
+
+const ESLintPluginConfig = new ESLintPlugin({
+  files: 'src',
+  fix: true
+})
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -87,5 +93,6 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     WebpackDefinePluginConfig,
+    ESLintPluginConfig
   ]
 };

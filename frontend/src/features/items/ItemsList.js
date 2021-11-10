@@ -8,59 +8,59 @@ import { ItemAuthor } from './ItemAuthor'
 import { useGetItemsQuery } from '../api/apiSlice'
 
 let ItemExcerpt = ({ item }) => {
-  return (
-    <article className="item-excerpt" key={item.id}>
-      <h3>{item.title}</h3>
-      <div>
-        <ItemAuthor userId={item.user} />
-      </div>
-      <p className="item-content">{item.content.substring(0, 100)}</p>
+	return (
+		<article className="item-excerpt" key={item.id}>
+			<h3>{item.title}</h3>
+			<div>
+				<ItemAuthor userId={item.user} />
+			</div>
+			<p className="item-content">{item.content.substring(0, 100)}</p>
 
-      <Link to={`/items/${item.id}`} className="button muted-button">
+			<Link to={`/items/${item.id}`} className="button muted-button">
         View Item
-      </Link>
-    </article>
-  )
+			</Link>
+		</article>
+	)
 }
 
 export const ItemsList = () => {
-  const {
-    data: items = [],
-    isLoading,
-    isFetching,
-    isSuccess,
-    isError,
-    error,
-  } = useGetItemsQuery()
+	const {
+		data: items = [],
+		isLoading,
+		isFetching,
+		isSuccess,
+		isError,
+		error,
+	} = useGetItemsQuery()
 
-  const sortedItems = useMemo(() => {
-    const sortedItems = items.slice()
-    sortedItems.sort((a, b) => b.date.localeCompare(a.date))
-    return sortedItems
-  }, [items])
+	const sortedItems = useMemo(() => {
+		const sortedItems = items.slice()
+		sortedItems.sort((a, b) => b.date.localeCompare(a.date))
+		return sortedItems
+	}, [items])
 
-  let content
+	let content
 
-  if (isLoading) {
-    content = <Spinner text="Loading..." />
-  } else if (isSuccess) {
-    const renderedItems = sortedItems.map((item) => (
-      <ItemExcerpt key={item.id} item={item} />
-    ))
+	if (isLoading) {
+		content = <Spinner text="Loading..." />
+	} else if (isSuccess) {
+		const renderedItems = sortedItems.map((item) => (
+			<ItemExcerpt key={item.id} item={item} />
+		))
 
-    const containerClassname = classnames('items-container', {
-      disabled: isFetching,
-    })
+		const containerClassname = classnames('items-container', {
+			disabled: isFetching,
+		})
 
-    content = <div className={containerClassname}>{renderedItems}</div>
-  } else if (isError) {
-    content = <div>{error.toString()}</div>
-  }
+		content = <div className={containerClassname}>{renderedItems}</div>
+	} else if (isError) {
+		content = <div>{error.toString()}</div>
+	}
 
-  return (
-    <section className="items-list">
-      <h2>Items</h2>
-      {content}
-    </section>
-  )
+	return (
+		<section className="items-list">
+			<h2>Items</h2>
+			{content}
+		</section>
+	)
 }

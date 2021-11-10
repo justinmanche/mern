@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "author": "Justin Manche",
   "private": true,
+  "scripts": {
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
+    "start": "webpack-dev-server"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "react": "^17",
@@ -15,12 +20,18 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "@material-ui/core": "^4.12.3",
+    "@material-ui/styles": "^4.11.4",
+    "@mdi/react": "^1.5.0",
     "babel-loader": "^8.2.3",
     "classnames": "^2.3.1",
     "css-loader": "^6.5.1",
+    "eslint": "^8.2.0",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-webpack-plugin": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.4",
     "style-loader": "^3.3.1",
+    "tinycolor2": "^1.4.2",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
