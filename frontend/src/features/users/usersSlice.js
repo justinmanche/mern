@@ -12,9 +12,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 			query: () => '/users',
 			transformResponse: (res) => {
 				return usersAdapter.setAll(initialState, res)
-			},
-		}),
-	}),
+			}
+		})
+	})
 })
 
 export const { useGetUsersQuery } = extendedApiSlice
@@ -32,5 +32,5 @@ const selectUsersData = createSelector(
 
 export const {
 	selectAll: selectAllUsers,
-	selectById: selectUserById,
+	selectById: selectUserById
 } = usersAdapter.getSelectors((state) => selectUsersData(state) ?? initialState)

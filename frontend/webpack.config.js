@@ -30,7 +30,6 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   devtool: 'source-map',
   entry: [
-    resolve('public/index.css'),
     resolve('src/index.js'),
   ],
   output: {
@@ -38,6 +37,16 @@ module.exports = {
     path: resolve('dist'),
     publicPath: '/',
     clean: true,
+  },
+  devServer: {
+    open: true,
+    historyApiFallback: true,
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false
+      }
+    }
   },
   resolve: {
     modules: ['node_modules', resolve('src'), resolve('public')]

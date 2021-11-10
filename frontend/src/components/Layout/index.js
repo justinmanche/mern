@@ -3,34 +3,28 @@ import {
 	Route,
 	Switch,
 	Redirect,
-	withRouter,
+	withRouter
 } from 'react-router-dom'
 import classnames from 'classnames'
 import { Box, IconButton, Link } from '@material-ui/core'
 import Icon from '@mdi/react'
-
-//icons
 import {
 	mdiFacebook as FacebookIcon,
 	mdiTwitter as TwitterIcon,
-	mdiGithub as GithubIcon,
+	mdiGithub as GithubIcon
 } from '@mdi/js'
-
-// styles
 import useStyles from './styles'
-
-// components
-import Header from '../Header'
-import Sidebar from '../Sidebar'
+import Header from 'components/Header'
+import Sidebar from 'components/Sidebar'
 
 // pages
-import Dashboard from '../../pages/dashboard'
-import Typography from '../../pages/typography'
-import Notifications from '../../pages/notifications'
-import Maps from '../../pages/maps'
-import Tables from '../../pages/tables'
-import Icons from '../../pages/icons'
-import Charts from '../../pages/charts'
+// import Dashboard from '../../pages/dashboard'
+// import Typography from '../../pages/typography'
+// import Notifications from '../../pages/notifications'
+// import Maps from '../../pages/maps'
+// import Tables from '../../pages/tables'
+// import Icons from '../../pages/icons'
+// import Charts from '../../pages/charts'
 
 
 import { ItemsList } from 'features/items/ItemsList'
@@ -44,17 +38,16 @@ const Layout = (props) => {
 	return (
 		<div className={classes.root}>
 			<>
-				<Header history={props.history} />
 				<Sidebar />
+				<Header history={props.history} />
 				<div
 					className={classnames(classes.content, {
-						[classes.contentShift]: true, //layoutState.isSidebarOpened,
-					})}
-				>
+						[classes.contentShift]: true //layoutState.isSidebarOpened,
+					})}>
 					<div className={classes.fakeToolbar} />
 					<Switch>
-						<Route path="/app/dashboard" component={Dashboard} />
-						<Route path="/app/typography" component={Typography} />
+						<Route path="/app/dashboard" component={ItemsList} />
+						{/*<Route path="/app/typography" component={Typography} />
 						<Route path="/app/tables" component={Tables} />
 						<Route path="/app/notifications" component={Notifications} />
 						<Route
@@ -64,79 +57,68 @@ const Layout = (props) => {
 						/>
 						<Route path="/app/ui/maps" component={Maps} />
 						<Route path="/app/ui/icons" component={Icons} />
-						<Route path="/app/ui/charts" component={Charts} />
+						<Route path="/app/ui/charts" component={Charts} />*/}
 					</Switch>
 					<Box
 						mt={5}
 						width={'100%'}
 						display={'flex'}
 						alignItems={'center'}
-						justifyContent="space-between"
-					>
+						justifyContent="space-between">
 						<div>
 							<Link
 								color={'primary'}
 								href={'https://flatlogic.com/'}
 								target={'_blank'}
-								className={classes.link}
-							>
+								className={classes.link}>
                   Flatlogic
 							</Link>
 							<Link
 								color={'primary'}
 								href={'https://flatlogic.com/about'}
 								target={'_blank'}
-								className={classes.link}
-							>
+								className={classes.link}>
                   About Us
 							</Link>
 							<Link
 								color={'primary'}
 								href={'https://flatlogic.com/blog'}
 								target={'_blank'}
-								className={classes.link}
-							>
+								className={classes.link}>
                   Blog
 							</Link>
 						</div>
 						<div>
 							<Link
 								href={'https://www.facebook.com/flatlogic'}
-								target={'_blank'}
-							>
+								target={'_blank'}>
 								<IconButton aria-label="facebook">
 									<Icon
 										path={FacebookIcon}
 										size={1}
-										color="#6E6E6E99"
-									/>
+										color="#6E6E6E99" />
 								</IconButton>
 							</Link>
 							<Link
 								href={'https://twitter.com/flatlogic'}
-								target={'_blank'}
-							>
+								target={'_blank'}>
 								<IconButton aria-label="twitter">
 									<Icon
 										path={TwitterIcon}
 										size={1}
-										color="#6E6E6E99"
-									/>
+										color="#6E6E6E99" />
 								</IconButton>
 							</Link>
 							<Link
 								href={'https://github.com/flatlogic'}
-								target={'_blank'}
-							>
+								target={'_blank'}>
 								<IconButton
 									aria-label="github"
-									style={{marginRight: -12}}
-								>
+									style={{marginRight: -12}}>
 									<Icon
 										path={GithubIcon}
 										size={1}
-										color="#6E6E6E99"
-									/>
+										color="#6E6E6E99" />
 								</IconButton>
 							</Link>
 						</div>

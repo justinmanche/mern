@@ -21,9 +21,9 @@ import {
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import classNames from "classnames";
 
-import { Badge, Typography } from "../Wrappers";
-import Notification from "../Notification";
-import UserAvatar from "../UserAvatar";
+import { Badge, Typography } from "components/Wrappers";
+import Notification from "components/Notification";
+import UserAvatar from "components/UserAvatar";
 
 const messages = [
   {

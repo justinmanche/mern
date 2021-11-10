@@ -30,7 +30,7 @@ export const ItemsList = () => {
 		isFetching,
 		isSuccess,
 		isError,
-		error,
+		error
 	} = useGetItemsQuery()
 
 	const sortedItems = useMemo(() => {
@@ -49,7 +49,7 @@ export const ItemsList = () => {
 		))
 
 		const containerClassname = classnames('items-container', {
-			disabled: isFetching,
+			disabled: isFetching
 		})
 
 		content = <div className={containerClassname}>{renderedItems}</div>

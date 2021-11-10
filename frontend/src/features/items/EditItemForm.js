@@ -40,16 +40,14 @@ export const EditItemForm = ({ match }) => {
 					placeholder="What's on your mind?"
 					value={title}
 					onChange={onTitleChanged}
-					disabled={isLoading}
-				/>
+					disabled={isLoading} />
 				<label htmlFor="itemContent">Content:</label>
 				<textarea
 					id="itemContent"
 					name="itemContent"
 					value={content}
 					onChange={onContentChanged}
-					disabled={isLoading}
-				/>
+					disabled={isLoading} />
 			</form>
 			<button type="button" onClick={onSaveItemClicked} disabled={isLoading}>
         Save Item

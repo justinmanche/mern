@@ -51,8 +51,7 @@ export const AddItemForm = () => {
 					name="itemTitle"
 					placeholder="What's on your mind?"
 					value={title}
-					onChange={onTitleChanged}
-				/>
+					onChange={onTitleChanged} />
 				<label htmlFor="itemAuthor">Author:</label>
 				<select id="itemAuthor" value={userId} onChange={onAuthorChanged}>
 					<option value=""></option>
@@ -63,14 +62,12 @@ export const AddItemForm = () => {
 					id="itemContent"
 					name="itemContent"
 					value={content}
-					onChange={onContentChanged}
-				/>
+					onChange={onContentChanged} />
 				<div
 					style={{
 						display: 'flex',
-						alignItems: 'center',
-					}}
-				>
+						alignItems: 'center'
+					}}>
 					<button type="button" onClick={onSaveItemClicked} disabled={!canSave}>
             Save Item
 					</button>
