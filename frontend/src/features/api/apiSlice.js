@@ -1,9 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+const reducerPath = 'api'
+
 export const apiSlice = createApi({
-	reducerPath: 'api',
-	baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/api' }),
-	tagTypes: ['Item'],
+	reducerPath,
+	baseQuery: fetchBaseQuery({
+		baseUrl: 'http://localhost:3001/api',
+		prepareHeaders: (headers, { getState }) => {
+			console.log('Preparing headers', getState)
+			const jwt = getState().reducerPath.currentUser.jwt
+		}
+	}),
+	tagTypes: ['Item', 'CurrentUser'],
 	endpoints: (builder) => ({
 		getItems: builder.query({
 			query: () => '/items',

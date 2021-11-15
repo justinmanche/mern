@@ -5,7 +5,7 @@ import {
 	Route,
 	Redirect
 } from 'react-router-dom'
-import Layout from 'components/Layout'
+import Layout from 'features/Layout'
 import Login from 'components/Login'
 import Error from 'components/Error'
 
@@ -37,9 +37,7 @@ function App() {
 	return (
 		<Router>
 			<Switch>
-				<Route exact path="/" render={() => <Redirect to="/app/dashboard" />} />
-				<Route exact path="/app" render={() => <Redirect to="/app/dashboard" />} />
-				<PrivateRoute path="/app" component={Layout} />
+				<PrivateRoute path="/" component={Layout} />
 				<PublicRoute path="/login" component={Login} />
 				<Route component={Error} />
 			</Switch>
