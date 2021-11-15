@@ -15,7 +15,7 @@ import useStyles from './styles'
 import logo from './logo.svg'
 import google from 'google-logo.png'
 
-function Login(props) {
+const Login = () => {
 	var classes = useStyles()
 	var [isLoading, setIsLoading] = useState(false)
 	var [error, setError] = useState(null)
@@ -24,7 +24,7 @@ function Login(props) {
 	var [loginValue, setLoginValue] = useState('admin@flatlogic.com')
 	var [passwordValue, setPasswordValue] = useState('password')
 
-	const loginUser = e => {
+	const loginUser = () => {
 		console.log('Logging in user!')
 	}
 

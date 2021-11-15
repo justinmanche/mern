@@ -7,8 +7,13 @@ export const apiSlice = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://localhost:3001/api',
 		prepareHeaders: (headers, { getState }) => {
-			console.log('Preparing headers', getState)
-			const jwt = getState().reducerPath.currentUser.jwt
+			const currentUser = getState()[reducerPath].currentUser
+
+			if (currentUser) {
+				headers['Authorization'] = currentUser.jwt
+			}
+
+			return headers
 		}
 	}),
 	tagTypes: ['Item', 'CurrentUser'],
