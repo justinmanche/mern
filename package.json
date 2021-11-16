@@ -4,14 +4,14 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "start": "concurrently \"npm:frontend\" \"npm:backend\""
   },
   "author": "Justin Manche",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.3.11",
-    "postcss-loader": "^6.2.0",
-    "tailwindcss": "^2.2.19"
+
   }
 }
