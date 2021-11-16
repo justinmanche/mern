@@ -5,7 +5,7 @@ const reducerPath = 'api'
 export const apiSlice = createApi({
 	reducerPath,
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:3001/api',
+		baseUrl: 'http://localhost:3000/api',
 		prepareHeaders: (headers, { getState }) => {
 			const currentUser = getState()[reducerPath].currentUser
 

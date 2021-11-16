@@ -7,7 +7,8 @@
     "test": "./scripts/test.sh",
     "frontend": "cd frontend && npm start",
     "backend": "nodemon index.js",
-    "start": "concurrently \"npm:backend\" \"npm:frontend\""
+    "lint-watch": "esw src -w --fit",
+    "start": "concurrently \"npm:backend\" \"npm:frontend\" \"npm:lint-watch\""
   },
   "author": "Justin Manche",
   "license": "ISC",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
+    "eslint-watch": "^8.0.0",
     "nodemon": "^2.0.15"
   }
 }
