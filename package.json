@@ -1,0 +1,17 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "MERN boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "start": "concurrently \"npm:frontend\" \"npm:backend\""
+  },
+  "author": "Justin Manche",
+  "license": "ISC",
+  "devDependencies": {
+
+  }
+}
