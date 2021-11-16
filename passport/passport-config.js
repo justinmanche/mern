@@ -1,11 +1,10 @@
-const passport    = require('passport')
-const session     = require('express-session')
-const MongoStore  = require('connect-mongo')
-const uuid        = require('uuid')
-const mongoose    = require('mongoose')
-
-const Strategies  = require('./strategies')
-const { User }    = require('../database/schemas')
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const uuid = require('uuid')
+const mongoose = require('mongoose')
+const { localStrategy } = require('./strategies')
+const { User } = require('../database/schemas')
 
 module.exports = app => {
 	const sessionConfig = {
@@ -30,5 +29,5 @@ module.exports = app => {
 			.then(user => done(null, user))
 			.catch(err => console.warn(`err at deserialize: ${err}`)))
 
-	passport.use(Strategies.local)
+	passport.use(localStrategy)
 }
