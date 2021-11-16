@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { createElement } from 'react'
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Redirect
 } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectLoggedIn } from 'features/user/userSlice'
 import Layout from 'features/Layout'
 import Login from 'components/Login'
 import Error from 'components/Error'
 
-function App() {
-	const isAuthenticated = true // ToDo: use user.logged_in
+const App = () => {
+	const isAuthenticated = useSelector(selectLoggedIn)
 
 	const PrivateRoute = ({ component, ...rest }) => {
 		const render = props => {
-			if (isAuthenticated) return React.createElement(component, props)
+			if (isAuthenticated) return createElement(component, props)
 
 			return (
 				<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
@@ -28,7 +30,7 @@ function App() {
 		const render = props => {
 			if (isAuthenticated) return <Redirect to={{ pathname: '/' }} />
 
-			return React.createElement(component, props)
+			return createElement(component, props)
 		}
 
 		return <Route {...rest} render={render} />
@@ -37,8 +39,8 @@ function App() {
 	return (
 		<Router>
 			<Switch>
-				<PrivateRoute path="/" component={Layout} />
 				<PublicRoute path="/login" component={Login} />
+				<PrivateRoute exact path="/" component={Layout} />
 				<Route component={Error} />
 			</Switch>
 		</Router>
