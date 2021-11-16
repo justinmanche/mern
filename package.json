@@ -7,7 +7,7 @@
     "test": "./scripts/test.sh",
     "frontend": "cd frontend && npm start",
     "backend": "nodemon index.js",
-    "lint-watch": "esw src -w --fit",
+    "lint-watch": "esw . -w --fix",
     "start": "concurrently \"npm:backend\" \"npm:frontend\" \"npm:lint-watch\""
   },
   "author": "Justin Manche",
