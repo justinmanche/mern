@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { MongooseAutoIncrementID } = require('mongoose-auto-increment-reworked');
 const bcrypt = require('bcryptjs');
 const R = require('ramda');
 
@@ -16,20 +15,6 @@ const userSchema = new Schema({
   created_at: { type: Date, default: Date.now, immutable: true },
   updated_at: { type: Date },
 }, { versionKey: false });
-
-if (process.env.NODE_ENV !== 'test') {
-  MongooseAutoIncrementID.initialise('counters');
-
-  userSchema.plugin(MongooseAutoIncrementID.plugin, {
-    modelName: 'User',
-    field: 'user',
-    incrementBy: 1,
-    startAt: 1,
-    unique: true,
-    nextCount: false,
-    resetCount: false,
-  });
-}
 
 userSchema.virtual('full_name').get(function() {
   if (this.first_name && this.last_name) {

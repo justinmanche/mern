@@ -4,27 +4,27 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "cd frontend && npm start",
-    "backend": "cd backend && npm start",
-    "start": "concurrently \"npm:frontend\" \"npm:backend\"",
-
-    "build": "./scripts/build-prd.sh",
-    "build:prd": "./scripts/build-prd.sh",
-    "build:dev": "./scripts/build-dev.sh",
-    "start": "nodemon server/index.js",
-    "dev": "./scripts/watch-dev.sh",
-    "lint": "eslint client server",
-    "lint:fix": "eslint client server --fix",
     "test": "./scripts/test.sh",
-    "test:verbose": "./scripts/test-verbose.sh",
-    "test:coverage": "./scripts/test-coverage.sh",
-    "test:watch-client": "./scripts/test-watch-client.sh",
-    "test:watch-server": "./scripts/test-watch-server.sh"
+    "frontend": "cd frontend && npm start",
+    "backend": "nodemon index.js",
+    "start": "concurrently \"npm:backend\" \"npm:frontend\""
   },
   "author": "Justin Manche",
   "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^4.6.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.13",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "ramda": "^0.27.1",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
-
+    "concurrently": "^6.4.0",
+    "nodemon": "^2.0.15"
   }
 }
