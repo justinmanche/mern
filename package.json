@@ -7,7 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm start",
     "backend": "cd backend && npm start",
-    "start": "concurrently \"npm:frontend\" \"npm:backend\""
+    "start": "concurrently \"npm:frontend\" \"npm:backend\"",
+
+    "build": "./scripts/build-prd.sh",
+    "build:prd": "./scripts/build-prd.sh",
+    "build:dev": "./scripts/build-dev.sh",
+    "start": "nodemon server/index.js",
+    "dev": "./scripts/watch-dev.sh",
+    "lint": "eslint client server",
+    "lint:fix": "eslint client server --fix",
+    "test": "./scripts/test.sh",
+    "test:verbose": "./scripts/test-verbose.sh",
+    "test:coverage": "./scripts/test-coverage.sh",
+    "test:watch-client": "./scripts/test-watch-client.sh",
+    "test:watch-server": "./scripts/test-watch-server.sh"
   },
   "author": "Justin Manche",
   "license": "ISC",
