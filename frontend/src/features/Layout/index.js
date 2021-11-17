@@ -14,13 +14,11 @@ import MenuIcon from '@mui/icons-material/Menu'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import Home from 'components/Home'
 import { AppBarSpacer, Drawer, List, Toolbar } from './styledComponents'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
-import Items from 'features/items/ItemsList'
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	const [open, setOpen] = useState(false)
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
@@ -61,10 +59,7 @@ const Layout = () => {
 			</Drawer>
 			<Box component="main" sx={{ px: 3 }}>
 				<AppBarSpacer />
-				<Switch>
-					<Route path="/items" component={Items} />
-					<Route path="/" component={Home} />
-				</Switch>
+				{children}
 			</Box>
 		</Box>
 	)

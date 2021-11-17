@@ -11,11 +11,14 @@ import Layout from 'features/Layout'
 import Login from 'components/Login'
 import Register from 'components/Register'
 import Error from 'components/Error'
+import Home from 'components/Home'
+import Items from 'features/items/ItemsList'
 
 const App = () => {
-	// const user = useSelector(selectCurrentUser)
 	const { data: user = {} } = useGetCurrentUserQuery()
 	const isAuthenticated = user._id
+
+	console.log('User authenticated:', isAuthenticated)
 
 	const PrivateRoute = ({ component, ...rest }) => {
 		const render = props => {
@@ -44,7 +47,10 @@ const App = () => {
 			<Switch>
 				<PublicRoute path="/login" component={Login} />
 				<PublicRoute path="/register" component={Register} />
-				<PrivateRoute path="/" component={Layout} />
+				<Layout>
+					<PrivateRoute path="/items" component={Items} />
+					<PrivateRoute path="/" component={Home} />
+				</Layout>
 				<Route component={Error} />
 			</Switch>
 		</Router>
