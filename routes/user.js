@@ -13,6 +13,12 @@ router.get('/', (req, res) => {
 	res.send({ message: 'User info successfully retreived', user })
 })
 
+router.get('/current', requireAuth, (req, res) => {
+	console.log('Current user:', req.user)
+
+	res.send(req.user)
+})
+
 router.put('/password', requireAuth, (req, res) => {
 	const { oldPassword, newPassword } = req.body
 

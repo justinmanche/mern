@@ -6,12 +6,8 @@ export const apiSlice = createApi({
 	reducerPath,
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://localhost:3000/api',
+		credentials: 'include',
 		prepareHeaders: (headers, { getState }) => {
-			const currentUser = getState()[reducerPath].currentUser
-
-			if (currentUser) {
-				headers['Authorization'] = currentUser.jwt
-			}
 
 			return headers
 		}

@@ -6,13 +6,16 @@ import {
 	Redirect
 } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { selectLoggedIn } from 'features/user/userSlice'
+import { selectCurrentUser, useGetCurrentUserQuery } from 'features/user/userSlice'
 import Layout from 'features/Layout'
 import Login from 'components/Login'
+import Register from 'components/Register'
 import Error from 'components/Error'
 
 const App = () => {
-	const isAuthenticated = useSelector(selectLoggedIn)
+	// const user = useSelector(selectCurrentUser)
+	const { data: user = {} } = useGetCurrentUserQuery()
+	const isAuthenticated = user._id
 
 	const PrivateRoute = ({ component, ...rest }) => {
 		const render = props => {
@@ -40,7 +43,8 @@ const App = () => {
 		<Router>
 			<Switch>
 				<PublicRoute path="/login" component={Login} />
-				<PrivateRoute exact path="/" component={Layout} />
+				<PublicRoute path="/register" component={Register} />
+				<PrivateRoute path="/" component={Layout} />
 				<Route component={Error} />
 			</Switch>
 		</Router>
