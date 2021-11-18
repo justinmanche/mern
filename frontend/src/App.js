@@ -1,13 +1,12 @@
-import React, { createElement } from 'react'
+import React, { createElement, Fragment } from 'react'
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Redirect
 } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectCurrentUser, useGetCurrentUserQuery } from 'features/user/userSlice'
-import Layout from 'features/Layout'
+import { useGetCurrentUserQuery } from 'features/user/userSlice'
+import AuthLayout from 'features/Layout'
 import Login from 'components/Login'
 import Register from 'components/Register'
 import Error from 'components/Error'
@@ -15,15 +14,20 @@ import Home from 'components/Home'
 import Items from 'features/items/ItemsList'
 
 const App = () => {
-	const { data: user = {} } = useGetCurrentUserQuery()
-	const isAuthenticated = user._id
+	const { data: user, isFetching } = useGetCurrentUserQuery()
 
-	console.log('User authenticated:', isAuthenticated)
+	if (!isFetching) {
+		localStorage.setItem('userId', user ? user._id : '')
+	}
+
+	const localUserId = localStorage.getItem('userId')
+	const isAuthenticated = !!localUserId
 
 	const PrivateRoute = ({ component, ...rest }) => {
 		const render = props => {
 			if (isAuthenticated) return createElement(component, props)
 
+			console.log('Redirecting to login')
 			return (
 				<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
 			)
@@ -42,17 +46,23 @@ const App = () => {
 		return <Route {...rest} render={render} />
 	}
 
+	const Layout = ({ children }) => {
+		if (!isAuthenticated) return <>{children}</>
+
+		return <AuthLayout>{children}</AuthLayout>
+	}
+
 	return (
 		<Router>
-			<Switch>
-				<PublicRoute path="/login" component={Login} />
-				<PublicRoute path="/register" component={Register} />
-				<Layout>
+			<Layout>
+				<Switch>
+					<PublicRoute path="/login" component={Login} />
+					<PublicRoute path="/register" component={Register} />
+					<PrivateRoute exact path="/" component={Home} />
 					<PrivateRoute path="/items" component={Items} />
-					<PrivateRoute path="/" component={Home} />
-				</Layout>
-				<Route component={Error} />
-			</Switch>
+					<Route component={Error} />
+				</Switch>
+			</Layout>
 		</Router>
 	)
 }

@@ -5,7 +5,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getCurrentUser: builder.query({
 			query: () => '/user/current',
-			providedTags: ['CurrentUser']
+			providesTags: ['CurrentUser']
 		}),
 		loginUser: builder.mutation({
 			query: params => ({

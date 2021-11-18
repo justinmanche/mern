@@ -6,11 +6,7 @@ export const apiSlice = createApi({
 	reducerPath,
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://localhost:3000/api',
-		credentials: 'include',
-		prepareHeaders: (headers, { getState }) => {
-
-			return headers
-		}
+		credentials: 'include'
 	}),
 	tagTypes: ['Item', 'CurrentUser'],
 	endpoints: (builder) => ({

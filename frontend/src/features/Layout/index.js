@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import {
-	Route,
-	Switch,
-	withRouter,
-	Link as RouterLink
-} from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -65,4 +60,4 @@ const Layout = ({ children }) => {
 	)
 }
 
-export default withRouter(Layout)
+export default Layout
