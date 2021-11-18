@@ -14,8 +14,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/current', requireAuth, (req, res) => {
-	console.log('Current user:', req.user)
-
 	res.send(req.user)
 })
 

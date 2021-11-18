@@ -7,6 +7,8 @@ const User = new Schema({
 	password: String
 })
 
+User.set('toJSON', { virtuals: true })
+
 User.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('users', User)

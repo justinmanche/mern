@@ -17,7 +17,7 @@ const App = () => {
 	const { data: user, isFetching } = useGetCurrentUserQuery()
 
 	if (!isFetching) {
-		localStorage.setItem('userId', user ? user._id : '')
+		localStorage.setItem('userId', user ? user.id : '')
 	}
 
 	const localUserId = localStorage.getItem('userId')
@@ -27,7 +27,6 @@ const App = () => {
 		const render = props => {
 			if (isAuthenticated) return createElement(component, props)
 
-			console.log('Redirecting to login')
 			return (
 				<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
 			)

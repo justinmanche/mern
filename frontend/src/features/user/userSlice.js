@@ -13,7 +13,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				method: 'POST',
 				body: params
 			}),
-			transformResponse: response => response.user,
 			invalidatesTags: ['CurrentUser']
 		}),
 		registerUser: builder.mutation({

@@ -29,9 +29,8 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 			return next(err)
 		}
 	})
-	console.log(req.session)
 
-	res.send({ user: { id: '123' }})
+	res.end()
 })
 
 router.post('/logout', (req, res) => {
