@@ -6,7 +6,7 @@ import {
 	Redirect
 } from 'react-router-dom'
 import { useGetCurrentUserQuery } from 'features/user/userSlice'
-import AuthLayout from 'features/Layout'
+import AuthLayout from 'features/layout/AuthLayout'
 import Login from 'components/Login'
 import Register from 'components/Register'
 import Error from 'components/Error'
@@ -14,10 +14,10 @@ import Home from 'components/Home'
 import Items from 'features/items/ItemsList'
 
 const App = () => {
-	const { data: user, isFetching } = useGetCurrentUserQuery()
+	const { data: user, isFetching, isSuccess } = useGetCurrentUserQuery()
 
 	if (!isFetching) {
-		localStorage.setItem('userId', user ? user.id : '')
+		localStorage.setItem('userId', user && isSuccess ? user.id : '')
 	}
 
 	const localUserId = localStorage.getItem('userId')

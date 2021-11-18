@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
 
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from 'features/api/apiSlice'
 
 const usersAdapter = createEntityAdapter()
 

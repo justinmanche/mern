@@ -12,13 +12,24 @@ import ListItemText from '@mui/material/ListItemText'
 import { AppBarSpacer, Drawer, List, Toolbar } from './styledComponents'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
+import MenuItem from '@mui/material/MenuItem'
+import Menu from '@mui/material/Menu'
+import AccountCircle from '@mui/icons-material/AccountCircle'
+import { useLogoutUserMutation } from 'features/user/userSlice'
 
-const Layout = ({ children }) => {
+const AuthLayout = ({ children }) => {
 	const [open, setOpen] = useState(false)
+	const [menuAnchor, setMenuAnchor] = useState(null)
+	const [logoutUser] = useLogoutUserMutation()
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
 		{ text: 'Items', url: '/items', icon: <ListAltIcon /> }
 	]
+	const closeMenu = () => setMenuAnchor(null)
+	const logout = () => {
+		logoutUser()
+		setMenuAnchor(null)
+	}
 
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -34,9 +45,27 @@ const Layout = ({ children }) => {
 						}}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap component="div">
+					<Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             MERN
 					</Typography>
+					<div>
+						<IconButton
+							size="large"
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							onClick={e => setMenuAnchor(e.currentTarget)}
+							color="inherit">
+							<AccountCircle />
+						</IconButton>
+						<Menu
+							id="menu-appbar"
+							anchorEl={menuAnchor}
+							open={Boolean(menuAnchor)}
+							onClose={closeMenu}>
+							<MenuItem onClick={logout}>Logout</MenuItem>
+						</Menu>
+					</div>
 				</Toolbar>
 			</AppBar>
 			<Drawer variant="permanent" open={open}>
@@ -60,4 +89,4 @@ const Layout = ({ children }) => {
 	)
 }
 
-export default Layout
+export default AuthLayout

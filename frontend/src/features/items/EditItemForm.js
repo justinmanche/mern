@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { Spinner } from '../../components/Spinner'
-import { useGetItemQuery, useEditItemMutation } from '../api/apiSlice'
+import { useGetItemQuery, useEditItemMutation } from 'features/items/itemsSlice'
 
 export const EditItemForm = ({ match }) => {
   const { itemId } = match.params

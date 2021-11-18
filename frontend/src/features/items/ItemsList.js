@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { Spinner } from '../../components/Spinner'
 import { ItemAuthor } from './ItemAuthor'
 
-import { useGetItemsQuery } from '../api/apiSlice'
+import { useGetItemsQuery } from 'features/items/itemsSlice'
 
 let ItemExcerpt = ({ item }) => {
 	return (

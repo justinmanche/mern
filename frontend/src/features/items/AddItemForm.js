@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { Spinner } from '../../components/Spinner'
-import { useAddNewItemMutation } from '../api/apiSlice'
+import { useAddNewItemMutation } from 'features/items/itemsSlice'
 import { selectAllUsers } from '../users/usersSlice'
 
 export const AddItemForm = () => {
