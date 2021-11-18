@@ -44,7 +44,6 @@ const ItemsList = () => {
 	if (isLoading) {
 		content = <Spinner text="Loading..." />
 	} else if (isSuccess) {
-		console.log(sortedItems)
 		const renderedItems = sortedItems.map((item) => (
 			<ItemExcerpt key={item.id} item={item} />
 		))

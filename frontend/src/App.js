@@ -1,18 +1,27 @@
-import React, { createElement } from 'react'
+import React, { createElement, Fragment } from 'react'
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Redirect
 } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectLoggedIn } from 'features/user/userSlice'
-import Layout from 'features/Layout'
+import { useGetCurrentUserQuery } from 'features/user/userSlice'
+import AuthLayout from 'features/Layout'
 import Login from 'components/Login'
+import Register from 'components/Register'
 import Error from 'components/Error'
+import Home from 'components/Home'
+import Items from 'features/items/ItemsList'
 
 const App = () => {
-	const isAuthenticated = useSelector(selectLoggedIn)
+	const { data: user, isFetching } = useGetCurrentUserQuery()
+
+	if (!isFetching) {
+		localStorage.setItem('userId', user ? user.id : '')
+	}
+
+	const localUserId = localStorage.getItem('userId')
+	const isAuthenticated = !!localUserId
 
 	const PrivateRoute = ({ component, ...rest }) => {
 		const render = props => {
@@ -36,13 +45,23 @@ const App = () => {
 		return <Route {...rest} render={render} />
 	}
 
+	const Layout = ({ children }) => {
+		if (!isAuthenticated) return <>{children}</>
+
+		return <AuthLayout>{children}</AuthLayout>
+	}
+
 	return (
 		<Router>
-			<Switch>
-				<PublicRoute path="/login" component={Login} />
-				<PrivateRoute exact path="/" component={Layout} />
-				<Route component={Error} />
-			</Switch>
+			<Layout>
+				<Switch>
+					<PublicRoute path="/login" component={Login} />
+					<PublicRoute path="/register" component={Register} />
+					<PrivateRoute exact path="/" component={Home} />
+					<PrivateRoute path="/items" component={Items} />
+					<Route component={Error} />
+				</Switch>
+			</Layout>
 		</Router>
 	)
 }

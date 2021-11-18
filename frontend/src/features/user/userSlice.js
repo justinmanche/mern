@@ -4,8 +4,8 @@ import { apiSlice } from '../api/apiSlice'
 export const extendedApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getCurrentUser: builder.query({
-			query: () => '/current_user',
-			providedTags: ['CurrentUser']
+			query: () => '/user/current',
+			providesTags: ['CurrentUser']
 		}),
 		loginUser: builder.mutation({
 			query: params => ({
@@ -14,18 +14,27 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				body: params
 			}),
 			invalidatesTags: ['CurrentUser']
+		}),
+		registerUser: builder.mutation({
+			query: params => ({
+				url: '/register',
+				method: 'POST',
+				body: params
+			}),
+			transformResponse: response => response.user,
+			invalidatesTags: ['CurrentUser']
 		})
 	})
 })
 
-export const { useGetCurrentUserQuery, useLoginUserMutation } = extendedApiSlice
+export const { useGetCurrentUserQuery, useLoginUserMutation, useRegisterUserMutation } = extendedApiSlice
 
-export const selectCurrentUsersData = createSelector(
+export const selectCurrentUser = createSelector(
 	extendedApiSlice.endpoints.getCurrentUser.select(),
 	result => result?.data ?? {}
 )
 
 export const selectLoggedIn = createSelector(
-	selectCurrentUsersData,
+	selectCurrentUser,
 	result => result.id
 )

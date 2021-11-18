@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import {
-	Route,
-	Switch,
-	withRouter,
-	Link as RouterLink
-} from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import AppBar from '@mui/material/AppBar'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -14,13 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import Home from 'components/Home'
 import { AppBarSpacer, Drawer, List, Toolbar } from './styledComponents'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import HomeIcon from '@mui/icons-material/Home'
-import Items from 'features/items/ItemsList'
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	const [open, setOpen] = useState(false)
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
@@ -61,13 +54,10 @@ const Layout = () => {
 			</Drawer>
 			<Box component="main" sx={{ px: 3 }}>
 				<AppBarSpacer />
-				<Switch>
-					<Route path="/items" component={Items} />
-					<Route path="/" component={Home} />
-				</Switch>
+				{children}
 			</Box>
 		</Box>
 	)
 }
 
-export default withRouter(Layout)
+export default Layout

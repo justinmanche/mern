@@ -4,14 +4,33 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./scripts/test.sh",
     "frontend": "cd frontend && npm start",
-    "backend": "cd backend && npm start",
-    "start": "concurrently \"npm:frontend\" \"npm:backend\""
+    "backend": "nodemon index.js",
+    "lint-watch": "esw . -w --fix",
+    "start": "concurrently \"npm:backend\" \"npm:frontend\" \"npm:lint-watch\""
   },
   "author": "Justin Manche",
   "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.13",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "ramda": "^0.27.1",
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
-
+    "concurrently": "^6.4.0",
+    "eslint-plugin-jest": "^25.2.4",
+    "eslint-watch": "^8.0.0",
+    "nodemon": "^2.0.15"
   }
 }
