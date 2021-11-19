@@ -1,7 +1,7 @@
 const express = require('express')
-const { User } = require('../database/schemas')
+const { User } = require('../models')
 
-const router   = express.Router()
+const router = express.Router()
 
 module.exports = router
 
@@ -17,5 +17,15 @@ router.post('/checkusername', (req, res) => {
 		} else {
 			res.send({ available: true, message: 'Username available', username })
 		}
+	})
+})
+
+router.get('/', (req, res) => {
+	User.find({}, (err, users) => {
+		if (err) {
+			res.status(400).send({ err })
+		}
+
+		res.send(users)
 	})
 })

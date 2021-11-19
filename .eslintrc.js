@@ -13,6 +13,7 @@ module.exports = {
 	rules: {
 		indent: ['error', 'tab'],
 		'linebreak-style': ['error', 'unix'],
+		'no-unused-vars': ['warn'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'never'],
 		'keyword-spacing': ['error', { before: true }]

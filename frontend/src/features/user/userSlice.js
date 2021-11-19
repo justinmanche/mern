@@ -22,7 +22,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 				method: 'POST',
 				body: params
 			}),
-			invalidatesTags: ['CurrentUser']
+			invalidatesTags: (result, err) => !err && ['CurrentUser']
 		}),
 		registerUser: builder.mutation({
 			query: params => ({

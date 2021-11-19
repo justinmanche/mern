@@ -1,8 +1,12 @@
 import React from 'react'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
-const Error = () => {
+const Error = ({ text }) => {
 	return (
-		<h1>Oops, something went wrong...</h1>
+		<Box>
+			<Typography variant='h1'>{text || 'Oops, something went wrong...'}</Typography>
+		</Box>
 	)
 }
 

@@ -3,7 +3,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const uuid = require('uuid')
 const mongoose = require('mongoose')
-const { User } = require('../database/schemas')
+const { User } = require('../models')
 
 module.exports = app => {
 	const sessionConfig = {
