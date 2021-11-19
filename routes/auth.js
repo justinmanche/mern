@@ -1,6 +1,6 @@
 const express  = require('express')
 const passport = require('passport')
-const { User } = require('../database/schemas')
+const { User } = require('../models')
 
 const router = express.Router()
 
@@ -23,14 +23,32 @@ router.post('/register', (req, res, next) => {
 	})
 })
 
-router.post('/login', passport.authenticate('local'), (req, res, next) => {
-	req.session.save((err) => {
-		if (err) {
-			return next(err)
+router.post('/login', function(req, res) {
+	if (!req.body.username){
+		res.status(401).send({ message: 'Username was not given'})
+	} else {
+		if (!req.body.password){
+			res.status(401).send({ message: 'Password was not given'})
+		} else {
+			passport.authenticate('local', function (err, user, info) {
+				if (err){
+					res.status(401).send({ message: err})
+				} else {
+					if (! user) {
+						res.status(401).send({ message: 'username or password incorrect'})
+					} else {
+						req.login(user, function(err){
+							if (err){
+								res.status(401).send({ message: err})
+							} else {
+								res.send({ message:'Authentication successful' })
+							}
+						})
+					}
+				}
+			})(req, res)
 		}
-	})
-
-	res.end()
+	}
 })
 
 router.post('/logout', (req, res) => {

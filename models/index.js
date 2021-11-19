@@ -1,9 +1,9 @@
 const Session = require('./Session')
 const User = require('./User')
-const Todo = require('./Todo')
+const Item = require('./Item')
 
 module.exports = {
 	Session,
 	User,
-	Todo,
+	Item,
 }

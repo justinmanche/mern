@@ -12,6 +12,8 @@ import Register from 'components/Register'
 import Error from 'components/Error'
 import Home from 'components/Home'
 import Items from 'features/items/ItemsList'
+import Item from 'features/items/Item'
+import ItemEdit from 'features/items/Edit'
 
 const App = () => {
 	const { data: user, isFetching, isSuccess } = useGetCurrentUserQuery()
@@ -58,6 +60,8 @@ const App = () => {
 					<PublicRoute path="/login" component={Login} />
 					<PublicRoute path="/register" component={Register} />
 					<PrivateRoute exact path="/" component={Home} />
+					<PrivateRoute path="/items/:itemId/edit" component={ItemEdit} />
+					<PrivateRoute path="/items/:itemId" component={Item} />
 					<PrivateRoute path="/items" component={Items} />
 					<Route component={Error} />
 				</Switch>

@@ -1,18 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import App from 'App'
 import store from 'store'
+import theme from 'theme'
 import { Provider } from 'react-redux'
-
-const theme = createTheme({
-	typography: {
-		button: {
-			fontSize: '1rem'
-		}
-	}
-})
 
 ReactDOM.render(
 	<React.StrictMode>

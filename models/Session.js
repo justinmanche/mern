@@ -8,6 +8,4 @@ const sessionSchema = new Schema({
 	expire: Date,
 })
 
-const Session = mongoose.model('Session', sessionSchema)
-
-module.exports = Session
+module.exports = mongoose.model('session', sessionSchema)

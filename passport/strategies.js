@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
-const { User } = require('../database/schemas')
+const { User } = require('../models')
 
 module.exports = {
 	localStrategy: new LocalStrategy((username, password, done) => {
