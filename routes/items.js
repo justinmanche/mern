@@ -72,8 +72,8 @@ router.patch('/:id', requireAuth, (req, res) => {
 	})
 })
 
-router.delete('/', requireAuth, (req, res) => {
-	Item.findByIdAndRemove(req.body.id, err => {
+router.delete('/:id', requireAuth, (req, res) => {
+	Item.findByIdAndRemove(req.params.id, err => {
 		if (err) {
 			res.status(400).send({ message: 'Delete item failed', err })
 		} else {

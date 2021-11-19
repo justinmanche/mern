@@ -14,8 +14,8 @@ export const slice = apiSlice.injectEndpoints({
 			}),
 			transformResponse: res => itemsAdapter.addMany(initialState, res),
 			providesTags: (result = []) => [
-				'Item',
-				...result.ids.map(id => ({ type: 'Item', id }))
+				'Items',
+				...result.ids.map(id => ({ type: 'Items', id }))
 			]
 		}),
 		getItem: builder.query({
@@ -28,7 +28,7 @@ export const slice = apiSlice.injectEndpoints({
 				method: 'POST',
 				body: initialItem
 			}),
-			invalidatesTags: ['Item']
+			invalidatesTags: ['Items']
 		}),
 		editItem: builder.mutation({
 			query: (item) => ({
@@ -36,7 +36,17 @@ export const slice = apiSlice.injectEndpoints({
 				method: 'PATCH',
 				body: item
 			}),
-			invalidatesTags: (result, error, arg) => [{ type: 'Item', id: arg.id }]
+			invalidatesTags: (result, error, arg) => [
+				{ type: 'Items', id: arg.id },
+				{ type: 'Item', id: arg.id }
+			]
+		}),
+		destroyItem: builder.mutation({
+			query: itemId => ({
+				url: `/items/${itemId}`,
+				method: 'DELETE'
+			}),
+			invalidatesTags: ['Items']
 		})
 	})
 })
@@ -45,7 +55,8 @@ export const {
 	useGetItemsQuery,
 	useGetItemQuery,
 	useAddNewItemMutation,
-	useEditItemMutation
+	useEditItemMutation,
+	useDestroyItemMutation
 } = slice
 
 const selectItemsData = createSelector(

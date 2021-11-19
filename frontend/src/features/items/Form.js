@@ -4,9 +4,9 @@ import Box from '@mui/material/Box'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Paper from '@mui/material/Paper'
 
-const Form = ({ item = {}, submit, isLoading }) => {
-	const [title, setTitle] = useState(item.title || '')
-	const [content, setContent] = useState(item.content || '')
+const Form = ({ item, submit, isLoading }) => {
+	const [title, setTitle] = useState(item?.title || '')
+	const [content, setContent] = useState(item?.content || '')
 
 	const canSave = [title, content].every(Boolean) && !isLoading
 
@@ -15,6 +15,10 @@ const Form = ({ item = {}, submit, isLoading }) => {
 
 		if (canSave) {
 			submit({ title, content })
+			if (!item) {
+				setTitle('')
+				setContent('')
+			}
 		}
 	}
 

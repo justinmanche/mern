@@ -13,7 +13,7 @@ const Add = () => {
 		}
 	}
 
-	return <Form submit={submit}	isLoading={isLoading} />
+	return <Form submit={submit} isLoading={isLoading} />
 }
 
 export default Add

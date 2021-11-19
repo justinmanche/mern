@@ -1,16 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Spinner from 'components/Spinner'
-import { useGetItemQuery  } from 'features/items/itemsSlice'
+import Error from 'components/Error'
+import { useGetItemQuery, useDestroyItemMutation } from 'features/items/itemsSlice'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
 const Item = ({ match }) => {
 	const { itemId } = match.params
-	const { data: item, isFetching } = useGetItemQuery(itemId)
+	const history = useHistory()
+	const { data: item, isFetching, isError } = useGetItemQuery(itemId)
+	const [destroyItem] = useDestroyItemMutation()
 
 	if (isFetching) return <Spinner text="Loading..." />
+	if (isError) return <Error text="Cannot find item" />
+
+	const destroy = async e => {
+		e.preventDefault()
+
+		await destroyItem(itemId)
+		history.push('/items')
+	}
 
 	return (
 		<Box>
@@ -22,7 +33,8 @@ const Item = ({ match }) => {
 			<Typography variant="h10" component="div">
 				{item.user.username}
 			</Typography>
-			<Button component={Link} to={`/items/${item.id}/edit`} variant="contained">Edit Item</Button>
+			<Button component={Link} to={`/items/${item.id}/edit`} variant="contained">Edit</Button>
+			<Button onClick={destroy} variant='contained' color='warning'>Delete</Button>
 		</Box>
 	)
 }
