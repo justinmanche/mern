@@ -5,9 +5,9 @@ import Form from './Form'
 const Add = () => {
 	const [addNewItem, { isLoading }] = useAddNewItemMutation()
 
-	const submit = async ({ title, content }) => {
+	const submit = async ({ name, content }) => {
 		try {
-			await addNewItem({ title, content }).unwrap()
+			await addNewItem({ name, content }).unwrap()
 		} catch (err) {
 			console.error('Failed to save the item: ', err)
 		}

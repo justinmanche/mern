@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import { useLogoutUserMutation } from 'features/user/userSlice'
+import Breadcrumbs from './Breadcrumbs'
 
 const AuthLayout = ({ children }) => {
 	const [open, setOpen] = useState(false)
@@ -83,6 +84,7 @@ const AuthLayout = ({ children }) => {
 			</Drawer>
 			<Box component="main" sx={{ px: 3 }}>
 				<AppBarSpacer />
+				<Breadcrumbs />
 				{children}
 			</Box>
 		</Box>

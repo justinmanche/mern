@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 import { useLoginUserMutation } from 'features/user/userSlice'
 
 const Login = () => {
-	const [username, setUsername] = useState('admin@test.com')
-	const [password, setPassword] = useState('password')
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
 	const [loginUser, { isLoading, isError, error }] = useLoginUserMutation()
 
 	const canSave = [username, password].every(Boolean) && !isLoading

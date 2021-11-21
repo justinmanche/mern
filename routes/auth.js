@@ -24,31 +24,23 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', function(req, res) {
-	if (!req.body.username){
-		res.status(401).send({ message: 'Username was not given'})
-	} else {
-		if (!req.body.password){
-			res.status(401).send({ message: 'Password was not given'})
+	passport.authenticate('local', function (err, user) {
+		if (err){
+			res.status(401).send({ message: err})
 		} else {
-			passport.authenticate('local', function (err, user, info) {
-				if (err){
-					res.status(401).send({ message: err})
-				} else {
-					if (! user) {
-						res.status(401).send({ message: 'username or password incorrect'})
+			if (! user) {
+				res.status(401).send({ message: 'username or password incorrect'})
+			} else {
+				req.login(user, function(err){
+					if (err){
+						res.status(401).send({ message: err})
 					} else {
-						req.login(user, function(err){
-							if (err){
-								res.status(401).send({ message: err})
-							} else {
-								res.send({ message:'Authentication successful' })
-							}
-						})
+						res.send({ message:'Authentication successful' })
 					}
-				}
-			})(req, res)
+				})
+			}
 		}
-	}
+	})(req, res)
 })
 
 router.post('/logout', (req, res) => {
