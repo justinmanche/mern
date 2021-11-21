@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "start": "webpack-dev-server"
+    "admin": "webpack-dev-server -c webpack.admin.config.js",
+    "customer": "webpack-dev-server -c webpack.customer.config.js"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
@@ -32,9 +33,7 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.4.0"
-  },
-  "devDependencies": {
+    "webpack-dev-server": "^4.4.0",
     "@mui/lab": "^5.0.0-alpha.54"
   }
 }

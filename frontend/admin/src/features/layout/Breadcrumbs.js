@@ -28,7 +28,6 @@ const Breadcrumbs = ({ location }) => {
 	})
 
 	const matchedRoutes = parsedRoutes.filter(({ path }) => pathname.includes(path))
-	console.log(matchedRoutes)
 	const crumbs = matchedRoutes.map(({ name, queryKey, id, path, crumbAttr = 'name' }) => {
 		if (name) return { path, name }
 
@@ -36,8 +35,6 @@ const Breadcrumbs = ({ location }) => {
 
 		return { path: path, name: queries[key]?.data?.[crumbAttr] }
 	})
-
-	console.log(crumbs)
 
 	return (
 		<MuiBreadcrumbs aria-label="breadcrumb" sx={{ py: 3 }}>

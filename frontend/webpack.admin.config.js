@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
-const resolve = dir => path.join(__dirname, dir);
+const resolve = dir => path.join(__dirname, 'admin', dir);
 
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
@@ -18,6 +18,7 @@ const WebpackDefinePluginConfig = new webpack.DefinePlugin({
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: resolve('public/index.html'),
   filename: 'index.html',
+  favicon: resolve('public/favicon.ico'),
   inject: 'body',
 });
 
@@ -40,7 +41,11 @@ module.exports = {
   },
   devServer: {
     open: true,
+    static: {
+      directory: path.join(__dirname, 'admin', 'public'),
+    },
     historyApiFallback: true,
+    port: 8080,
     client: {
       overlay: {
         errors: true,
@@ -49,14 +54,17 @@ module.exports = {
     }
   },
   resolve: {
-    modules: ['node_modules', resolve('src'), resolve('public')]
+    modules: ['node_modules', resolve('src'), resolve('public')],
+    alias: {
+      shared: path.join(__dirname, 'shared')
+    }
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
-        include: [resolve('src')]
+        include: [path.join(__dirname, 'shared'), resolve('src')]
       },
       {
         test: /\.css$/,

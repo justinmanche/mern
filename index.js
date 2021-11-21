@@ -19,7 +19,16 @@ const corsOptions = {
 	headers: 'Origin, X-Requested-With, Content-Type, Accept',
 	optionSuccessStatus: 200
 }
-app.use(cors(corsOptions))
+app.use((req, res, next) => {
+	const allowedOrigins = ['http://localhost:8080', 'http://localhost:8081']
+	const origin = req.headers.origin
+	if (allowedOrigins.includes(origin)) {
+		res.setHeader('Access-Control-Allow-Origin', origin)
+	}
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+	res.header('Access-Control-Allow-Credentials', true)
+	return next()
+})
 
 app.use(express.static(assetFolder))
 app.use(bodyParser.json())
