@@ -25,7 +25,7 @@ const Item = ({ match }) => {
 
 	return (
 		<Box>
-			<Typography variant='h2'>{item.title}</Typography>
+			<Typography variant='h2'>{item.name}</Typography>
 			<Typography variant="body2" color="text.secondary">
 				{item.content}
 			</Typography>

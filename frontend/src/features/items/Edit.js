@@ -14,8 +14,8 @@ const Edit = ({ match }) => {
 
 	if (itemFetching) return <Spinner text="Loading item..." />
 
-	const submit = async ({ title, content }) => {
-		await updateItem({ id: itemId, title, content })
+	const submit = async ({ name, content }) => {
+		await updateItem({ id: itemId, name, content })
 		history.push(`/items/${itemId}`)
 	}
 

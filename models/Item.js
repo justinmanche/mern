@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const itemSchema = new Schema({
 	user: { type: Schema.Types.ObjectId, ref: 'user' },
-	title: String,
+	name: String,
 	content: String,
 	created_at: { type: Date, default: Date.now, immutable: true },
 	updated_at: { type: Date },

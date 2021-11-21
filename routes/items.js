@@ -14,7 +14,6 @@ router.get('/', requireAuth, async (req, res) => {
 	})
 })
 
-
 router.get('/:id', requireAuth, (req, res) => {
 	Item.findById(req.params.id, async (err, item) => {
 		if (err) return res.status(400).send({ message: 'Failed to retrieve item', err })
@@ -58,7 +57,7 @@ router.patch('/:id', requireAuth, (req, res) => {
 		if (err) {
 			res.status(400).send({ message: 'Update item failed', err })
 		} else {
-			item.title = req.body.title
+			item.name = req.body.name
 			item.content = req.body.content
 			item.updated_at = Date.now()
 			item.save((err, savedItem) => {

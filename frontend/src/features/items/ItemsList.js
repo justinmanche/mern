@@ -16,7 +16,7 @@ const Item = ({ item, bg }) => (
 		<CardActionArea component={Link} to={`/items/${item.id}`}>
 			<CardContent>
 				<Typography gutterBottom variant="h5">
-					{item.title}
+					{item.name}
 				</Typography>
 				<Typography variant="body2" color="text.secondary">
 					{item.content}
@@ -48,7 +48,6 @@ const ItemsList = () => {
 
 	return (
 		<>
-			<Typography variant='h1'>Items</Typography>
 			<AddItemForm />
 			{isLoading && <Spinner text="Loading..." />}
 			{isError && <div>{error.error}</div>}
