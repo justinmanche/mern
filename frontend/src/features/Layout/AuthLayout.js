@@ -17,6 +17,7 @@ import Menu from '@mui/material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import { useLogoutUserMutation } from 'features/user/userSlice'
 import Breadcrumbs from './Breadcrumbs'
+import UsersIcon from '@mui/icons-material/PeopleAlt'
 
 const AuthLayout = ({ children }) => {
 	const [open, setOpen] = useState(false)
@@ -24,7 +25,8 @@ const AuthLayout = ({ children }) => {
 	const [logoutUser] = useLogoutUserMutation()
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
-		{ text: 'Items', url: '/items', icon: <ListAltIcon /> }
+		{ text: 'Items', url: '/items', icon: <ListAltIcon /> },
+		{ text: 'Users', url: '/users', icon: <UsersIcon /> }
 	]
 	const closeMenu = () => setMenuAnchor(null)
 	const logout = () => {

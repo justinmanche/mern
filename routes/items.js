@@ -14,7 +14,6 @@ router.get('/', requireAuth, async (req, res) => {
 	})
 })
 
-
 router.get('/:id', requireAuth, (req, res) => {
 	Item.findById(req.params.id, async (err, item) => {
 		if (err) return res.status(400).send({ message: 'Failed to retrieve item', err })

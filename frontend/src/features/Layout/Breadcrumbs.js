@@ -21,22 +21,23 @@ const Breadcrumbs = ({ location }) => {
 		if (!paramToReplace) return route
 
 		return {
-			name: route.name,
-			queryKey: route.queryKey,
+			...route,
 			path: route.path.replace(`:${route.replace}`, paramToReplace),
 			id: paramToReplace
 		}
 	})
 
 	const matchedRoutes = parsedRoutes.filter(({ path }) => pathname.includes(path))
-
-	const crumbs = matchedRoutes.map(({ name, queryKey, id, path }) => {
+	console.log(matchedRoutes)
+	const crumbs = matchedRoutes.map(({ name, queryKey, id, path, crumbAttr = 'name' }) => {
 		if (name) return { path, name }
 
 		const key = `${queryKey}("${id}")`
 
-		return { path: path, name: queries[key]?.data?.name }
+		return { path: path, name: queries[key]?.data?.[crumbAttr] }
 	})
+
+	console.log(crumbs)
 
 	return (
 		<MuiBreadcrumbs aria-label="breadcrumb" sx={{ py: 3 }}>
