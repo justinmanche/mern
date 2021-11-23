@@ -18,7 +18,7 @@ const WebpackDefinePluginConfig = new webpack.DefinePlugin({
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: resolve('public/index.html'),
   filename: 'index.html',
-  favicon: resolve('public/favicon.ico'),
+  favicon: resolve('public/shield.png'),
   inject: 'body',
 });
 
