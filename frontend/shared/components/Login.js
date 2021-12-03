@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Link } from 'react-router-dom'
-import { useLoginUserMutation } from 'features/user/userSlice'
+import { useLoginUserMutation } from 'shared/features/user/userSlice'
 
 const Login = () => {
 	const [username, setUsername] = useState('')

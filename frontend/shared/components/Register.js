@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Box from '@mui/material/Box'
 import { Link } from 'react-router-dom'
-import { useRegisterUserMutation } from 'features/user/userSlice'
+import { useRegisterUserMutation } from 'shared/features/user/userSlice'
 
 const Register = () => {
 	const [username, setUsername] = useState('admin@test.com')

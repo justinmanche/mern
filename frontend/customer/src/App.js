@@ -1,23 +1,14 @@
 import React from 'react'
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect
-} from 'react-router-dom'
-import Error from 'components/Error'
+import BaseApp from 'shared/components/App'
 import Home from 'components/Home'
+import { Route } from 'react-router-dom'
 
 const App = () => {
-
-	return (
-		<Router>
-			<Switch>
-				<Route path='/' exact component={Home} />
-				<Route component={Error} />
-			</Switch>
-		</Router>
-	)
+  return (
+    <BaseApp>
+      <Route exact path='/' component={Home} />
+    </BaseApp>
+  )
 }
 
 export default App

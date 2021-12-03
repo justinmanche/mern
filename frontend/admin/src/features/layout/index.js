@@ -15,14 +15,19 @@ import HomeIcon from '@mui/icons-material/Home'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import { useLogoutUserMutation } from 'features/user/userSlice'
+import { useLogoutUserMutation } from 'shared/features/user/userSlice'
+import { useIsAuthenticated } from 'shared/features/user/hooks'
 import Breadcrumbs from './Breadcrumbs'
 import UsersIcon from '@mui/icons-material/PeopleAlt'
 
-const AuthLayout = ({ children }) => {
+const Layout = ({ children }) => {
 	const [open, setOpen] = useState(false)
 	const [menuAnchor, setMenuAnchor] = useState(null)
 	const [logoutUser] = useLogoutUserMutation()
+	const isAuthenticated = useIsAuthenticated()
+
+	if (!isAuthenticated) return <>{children}</>
+
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
 		{ text: 'Items', url: '/items', icon: <ListAltIcon /> },
@@ -33,6 +38,7 @@ const AuthLayout = ({ children }) => {
 		logoutUser()
 		setMenuAnchor(null)
 	}
+
 
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -93,4 +99,4 @@ const AuthLayout = ({ children }) => {
 	)
 }
 
-export default AuthLayout
+export default Layout

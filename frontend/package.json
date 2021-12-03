@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
-    "admin": "webpack-dev-server -c webpack.admin.config.js",
-    "customer": "webpack-dev-server -c webpack.customer.config.js"
+    "admin": "webpack serve --env project=admin",
+    "customer": "webpack serve --env project=customer"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",
