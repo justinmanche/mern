@@ -11,7 +11,7 @@ module.exports = {
 		sourceType: 'module'
 	},
 	rules: {
-		indent: ['error', 'tab'],
+		indent: ['error', 'tab', { offsetTernaryExpressions: false, flatTernaryExpressions: true }],
 		'linebreak-style': ['error', 'unix'],
 		'no-unused-vars': ['warn'],
 		quotes: ['error', 'single'],

@@ -54,9 +54,9 @@ const Layout = ({ children }) => {
 						}}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            MERN
-					</Typography>
+					<Box sx={{ flexGrow: 1, paddingLeft: 0 }}>
+						<img src='./shield.png' />
+					</Box>
 					<div>
 						<IconButton
 							size="large"

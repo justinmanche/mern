@@ -4,11 +4,11 @@ import Home from 'components/Home'
 import { Route } from 'react-router-dom'
 
 const App = () => {
-  return (
-    <BaseApp>
-      <Route exact path='/' component={Home} />
-    </BaseApp>
-  )
+	return (
+		<BaseApp>
+			<Route exact path='/' component={Home} />
+		</BaseApp>
+	)
 }
 
 export default App

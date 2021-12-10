@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
-import { useGetUsersQuery, selectAllUsers } from './usersSlice'
+import { Link } from 'react-router-dom'
+import { selectAllUsers } from './usersSlice'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -11,9 +11,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
 const UsersList = () => {
-	const { isFetching, isSuccess } = useGetUsersQuery()
 	const users = useSelector(selectAllUsers)
-	const history = useHistory()
 
 	return (
 		<TableContainer component={Paper}>

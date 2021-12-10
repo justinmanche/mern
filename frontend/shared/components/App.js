@@ -1,9 +1,8 @@
-import React, { createElement, Fragment } from 'react'
+import React, { createElement } from 'react'
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route,
-	Redirect
+	Route
 } from 'react-router-dom'
 import { useIsAuthenticated } from 'shared/features/user/hooks'
 import { useGetCurrentUserQuery } from 'shared/features/user/userSlice'
@@ -11,14 +10,13 @@ import Layout from 'features/layout'
 import Login from 'shared/components/Login'
 import Register from 'shared/components/Register'
 import Error from 'components/Error'
-import Home from 'components/Home'
 import PrivateRoute from 'shared/components/PrivateRoute'
 import PublicRoute from 'shared/components/PublicRoute'
 import Spinner from 'shared/components/Spinner'
 import routes from 'routes'
 
 const App = ({ children }) => {
-	const { data: user, isLoading, isSuccess } = useGetCurrentUserQuery()
+	const { data: user, isLoading } = useGetCurrentUserQuery()
 	const isAuthenticated = useIsAuthenticated()
 
 	if (isLoading) return <Spinner />
@@ -36,7 +34,7 @@ const App = ({ children }) => {
 							...rest,
 							authenticated: isAuthenticated,
 							key: rest.path,
-							exact: true,
+							exact: true
 						}
 
 						return createElement(component, props)
