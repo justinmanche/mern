@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import Spinner from 'components/Spinner'
+import Spinner from 'shared/components/Spinner'
 import Error from 'shared/components/Error'
 import { useGetItemQuery, useDestroyItemMutation } from 'features/items/itemsSlice'
 import Box from '@mui/material/Box'

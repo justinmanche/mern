@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react'
 import { useGetItemsQuery, selectAllItems } from 'features/items/itemsSlice'
-import { useGetUsersQuery } from 'features/users/usersSlice'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import { red, lime } from '@mui/material/colors'
-import Spinner from 'components/Spinner'
-import AddItemForm from './Add'
+import Spinner from 'shared/components/Spinner'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
@@ -21,10 +19,6 @@ const Item = ({ item, bg }) => (
 				<Typography variant="body2" color="text.secondary">
 					{item.content}
 				</Typography>
-				<br />
-				<Typography variant="h10" component="div">
-					{item.user.username}
-				</Typography>
 			</CardContent>
 		</CardActionArea>
 	</Card>
@@ -37,7 +31,6 @@ const ItemsList = () => {
 		isError,
 		error
 	} = useGetItemsQuery()
-	useGetUsersQuery()
 	const items = useSelector(selectAllItems)
 
 	const sortedItems = useMemo(() => {
@@ -48,7 +41,6 @@ const ItemsList = () => {
 
 	return (
 		<>
-			<AddItemForm />
 			{isLoading && <Spinner text="Loading..." />}
 			{isError && <div>{error.error}</div>}
 			{isSuccess && sortedItems.map((item, i) => (

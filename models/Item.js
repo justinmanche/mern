@@ -9,9 +9,12 @@ const itemSchema = new Schema({
 	updated_at: { type: Date },
 })
 
+const privateFields = ['user']
+
 itemSchema.set('toJSON', { virtuals: true })
 
 itemSchema.pre('find', function() {
+	console.log(this)
 	this.populate('user')
 })
 

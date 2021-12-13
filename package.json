@@ -4,7 +4,7 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "./scripts/test.sh",
+    "test": "jest",
     "admin-frontend": "cd frontend/admin && npm run admin",
     "customer-frontend": "cd frontend/customer && npm run customer",
     "backend": "nodemon index.js",
@@ -32,6 +32,8 @@
     "concurrently": "^6.4.0",
     "eslint-plugin-jest": "^25.2.4",
     "eslint-watch": "^8.0.0",
+    "jest": "^27.4.4",
+    "mongodb-memory-server": "^8.0.4",
     "nodemon": "^2.0.15"
   }
 }

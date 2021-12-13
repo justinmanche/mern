@@ -2,7 +2,7 @@ import React from 'react'
 import { useGetUserQuery } from 'features/users/usersSlice'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Spinner from 'components/Spinner'
+import Spinner from 'shared/components/Spinner'
 import Error from 'shared/components/Error'
 
 const User = ({ match }) => {

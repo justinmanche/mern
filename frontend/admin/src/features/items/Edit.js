@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import Spinner from 'components/Spinner'
+import Spinner from 'shared/components/Spinner'
 import { useGetItemQuery, useEditItemMutation } from 'features/items/itemsSlice'
 import Form from 'features/items/Form'
 import Typography from '@mui/material/Typography'
