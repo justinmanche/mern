@@ -3,7 +3,7 @@ import { useGetUserQuery } from 'features/users/usersSlice'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Spinner from 'components/Spinner'
-import Error from 'components/Error'
+import Error from 'shared/components/Error'
 
 const User = ({ match }) => {
 	const { userId } = match.params
