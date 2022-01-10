@@ -7,11 +7,13 @@ const router = express.Router()
 module.exports = router
 
 router.post('/register', (req, res, next) => {
-	User.register(new User({ username : req.body.username }), req.body.password, (err, user) => {
+	const { username, password, type, firstName, surname } = req.body
+	const userParams = { username, password, type, firstName, surname }
+	User.register(new User(userParams), req.body.password, (err, user) => {
 		if (err) {
 			return res.status(400).send({ message: err.message })
 		}
-
+		
 		passport.authenticate('local')(req, res, () => {
 			req.session.save((err) => {
 				if (err) {
@@ -23,12 +25,13 @@ router.post('/register', (req, res, next) => {
 	})
 })
 
-router.post('/login', function(req, res) {
+router.post('/login', async function(req, res) {
+	const users = await User.find()
 	passport.authenticate('local', function (err, user) {
 		if (err){
-			res.status(401).send({ message: err})
+			res.status(401).send({ message: err })
 		} else {
-			if (! user) {
+			if (!user) {
 				res.status(401).send({ message: 'username or password incorrect'})
 			} else {
 				req.login(user, function(err){

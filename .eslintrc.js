@@ -5,6 +5,7 @@ module.exports = {
 		'jest/globals': true
 	},
 	plugins: ['jest'],
+	ignorePatterns: ['test'],
 	extends: 'eslint:recommended',
 	parserOptions: {
 		ecmaVersion: 13,
