@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import { Link } from 'react-router-dom'
 import { useRegisterUserMutation } from 'shared/features/user/userSlice'
 
-const Register = () => {
+const Register = ({ type }) => {
 	const [username, setUsername] = useState('admin@test.com')
 	const [password, setPassword] = useState('password')
 	const [registerUser, { isLoading, isError, error }] = useRegisterUserMutation()
@@ -18,7 +18,7 @@ const Register = () => {
 
 		if (!canSave) return
 
-		registerUser({ username, password })
+		registerUser({ username, password, type })
 	}
 
 	return (

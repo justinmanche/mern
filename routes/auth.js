@@ -7,13 +7,13 @@ const router = express.Router()
 module.exports = router
 
 router.post('/register', (req, res, next) => {
-	const { username, password, type, firstName, surname } = req.body
-	const userParams = { username, password, type, firstName, surname }
+	const { username, password, type } = req.body
+	const userParams = { username, password, type }
 	User.register(new User(userParams), req.body.password, (err, user) => {
 		if (err) {
 			return res.status(400).send({ message: err.message })
 		}
-		
+
 		passport.authenticate('local')(req, res, () => {
 			req.session.save((err) => {
 				if (err) {
@@ -26,7 +26,6 @@ router.post('/register', (req, res, next) => {
 })
 
 router.post('/login', async function(req, res) {
-	const users = await User.find()
 	passport.authenticate('local', function (err, user) {
 		if (err){
 			res.status(401).send({ message: err })

@@ -3,11 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component, authenticated, ...rest }) => {
 	const render = props => {
-		if (authenticated) return createElement(component, props)
+		if (!authenticated) {
+			return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+		}
 
-		return (
-			<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-		)
+		return createElement(component, { ...props, ...rest })
 	}
 
 	return <Route {...rest} render={render} />

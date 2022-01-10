@@ -1,22 +1,17 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { queryify } from 'shared/helpers'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
-import SendIcon from '@mui/icons-material/Send'
 import Button from '@mui/material/Button'
 
 const Home = () => {
 	const [search, setSearch] = useState('')
-	const [loading, setLoading] = useState(false)
 	const history = useHistory()
 
 	const go = e => {
 		e.preventDefault()
-		setLoading(true)
 		history.push({
 			pathname: '/items',
 			search: queryify({ query: search })

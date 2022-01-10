@@ -9,7 +9,8 @@
     "customer-frontend": "cd frontend/customer && npm run customer",
     "backend": "nodemon index.js",
     "lint-watch": "esw . -w --fix",
-    "start": "concurrently \"npm:backend\" \"npm:admin-frontend\" \"npm:customer-frontend\" \"npm:lint-watch\""
+    "start": "concurrently \"npm:backend\" \"npm:admin-frontend\" \"npm:customer-frontend\" \"npm:lint-watch\"",
+    "db-reset": "node ./scripts/drop-database.js"
   },
   "author": "Justin Manche",
   "license": "ISC",

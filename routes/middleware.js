@@ -3,8 +3,6 @@ const requireAuth = (req, res, next) => {
 		return res.status(401).send({ message: 'User not authenticated' })
 	}
 
-	console.log('Req user:', req.user)
-
 	req.isAdmin = req.user.type === 'admin'
 
 	next()

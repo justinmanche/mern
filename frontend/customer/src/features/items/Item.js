@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
 import Spinner from 'shared/components/Spinner'
 import Error from 'shared/components/Error'
 import { useGetItemQuery } from 'features/items/itemsSlice'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 
 const Item = ({ match }) => {
 	const { itemId } = match.params

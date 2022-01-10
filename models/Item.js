@@ -12,7 +12,7 @@ const itemSchema = new Schema({
 
 itemSchema.set('toJSON', {
 	virtuals: true,
-	transform: (doc, record, options) => {
+	transform: (doc, record) => {
 		stripDefaultFields(record)
 	}
 })

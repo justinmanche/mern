@@ -8,7 +8,7 @@ const Error = ({ text }) => {
 	return (
 		<Grid container alignItems='center' alignContent='center' justifyContent='center' sx={{ height: '100vh', pb: '40vh', gap: 2 }}>
 			<Typography sx={{ fontSize: '5vw' }}>
-				Oops, something went wrong...
+				{text || 'Oops, something went wrong...'}
 			</Typography>
 			<Button variant='outlined' component={Link} to={'/'}>
 				Back to safety

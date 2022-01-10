@@ -17,6 +17,7 @@ module.exports = {
 		'no-unused-vars': ['warn'],
 		quotes: ['error', 'single'],
 		semi: ['error', 'never'],
-		'keyword-spacing': ['error', { before: true }]
+		'keyword-spacing': ['error', { before: true }],
+		'no-mixed-spaces-and-tabs': ['warn', 'smart-tabs']
 	}
 }

@@ -5,7 +5,7 @@ const PublicRoute = ({ component, authenticated, ...rest }) => {
 	const render = props => {
 		if (authenticated) return <Redirect to={{ pathname: '/' }} />
 
-		return createElement(component, props)
+		return createElement(component, { ...props, ...rest })
 	}
 
 	return <Route {...rest} render={render} />

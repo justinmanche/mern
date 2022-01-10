@@ -7,8 +7,6 @@ import {
 import { useIsAuthenticated } from 'shared/features/user/hooks'
 import { useGetCurrentUserQuery } from 'shared/features/user/userSlice'
 import Layout from 'features/layout'
-import Login from 'shared/components/Login'
-import Register from 'shared/components/Register'
 import Error from 'shared/components/Error'
 import PrivateRoute from 'shared/components/PrivateRoute'
 import PublicRoute from 'shared/components/PublicRoute'
@@ -40,8 +38,6 @@ const App = ({ children }) => {
 						return createElement(component, props)
 					})}
 					{children}
-					<PublicRoute exact authenticated={isAuthenticated} path="/login" component={Login} />
-					<PublicRoute exact authenticated={isAuthenticated} path="/register" component={Register} />
 					<Route component={Error} />
 				</Switch>
 			</Layout>

@@ -6,7 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { Link } from 'react-router-dom'
 import { useLoginUserMutation } from 'shared/features/user/userSlice'
 
-const Login = () => {
+const Login = ({ type }) => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [loginUser, { isLoading, isError, error }] = useLoginUserMutation()
@@ -18,7 +18,7 @@ const Login = () => {
 
 		if (!canSave) return
 
-		loginUser({ username, password })
+		loginUser({ username, password, type })
 	}
 
 	return (
