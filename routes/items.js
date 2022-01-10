@@ -7,7 +7,10 @@ const router = express.Router()
 module.exports = router
 
 router.get('/', requireAuth, async (req, res) => {
-	Item.find({ user: req.user.id }, (err, items) => {
+	const query = Item.find()
+	if (req.isAdmin) query.populate('user')
+
+	query.exec((err, items) => {
 		if (err) return res.status(400).send({ message: 'Failed to retrieve items', err })
 
 		res.send(items)

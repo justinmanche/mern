@@ -4,11 +4,13 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "./scripts/test.sh",
-    "frontend": "cd frontend && npm start",
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "admin-frontend": "cd frontend/admin && npm run admin",
+    "customer-frontend": "cd frontend/customer && npm run customer",
     "backend": "nodemon index.js",
     "lint-watch": "esw . -w --fix",
-    "start": "concurrently \"npm:backend\" \"npm:frontend\" \"npm:lint-watch\""
+    "start": "concurrently \"npm:backend\" \"npm:admin-frontend\" \"npm:customer-frontend\" \"npm:lint-watch\"",
+    "db-reset": "node ./scripts/drop-database.js"
   },
   "author": "Justin Manche",
   "license": "ISC",
@@ -28,9 +30,14 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "axios": "^0.24.0",
     "concurrently": "^6.4.0",
     "eslint-plugin-jest": "^25.2.4",
     "eslint-watch": "^8.0.0",
-    "nodemon": "^2.0.15"
+    "fishery": "^2.1.0",
+    "jest": "^27.4.4",
+    "mongodb-memory-server": "^8.0.4",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
   }
 }
