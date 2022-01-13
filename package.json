@@ -4,6 +4,7 @@
   "description": "MERN boilerplate",
   "main": "index.js",
   "scripts": {
+    "build": "cd frontend && build:admin && build:customer",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "admin-frontend": "cd frontend/admin && npm run admin",
     "customer-frontend": "cd frontend/customer && npm run customer",
