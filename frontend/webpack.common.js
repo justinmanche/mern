@@ -61,7 +61,8 @@ module.exports = project => {
 		resolve: {
 			modules: ['node_modules', resolve('src'), resolve('public')],
 			alias: {
-				shared: path.join(__dirname, 'shared')
+				shared: path.join(__dirname, 'shared'),
+				config: path.join(__dirname, 'config')
 			}
 		},
 		module: {

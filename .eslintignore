@@ -1,1 +1,3 @@
 node_modules
+frontend/admin/dist
+frontend/customer/dist

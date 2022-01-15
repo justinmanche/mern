@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name ${CUSTOMER_DOMAIN};
+
+    location / {
+      root /usr/share/nginx/html/customer;
+      try_files $uri /index.html;
+    }
+}
+
+server {
+    listen 80;
+    server_name ${ADMIN_DOMAIN};
+
+    location / {
+      root /usr/share/nginx/html/admin;
+      try_files $uri /index.html;
+    }
+}

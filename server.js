@@ -5,6 +5,7 @@ const cors = require('cors')
 const routes = require('./routes/index')
 const configPassport = require('./passport-config')
 const assetFolder = path.resolve(__dirname, 'frontend/dist/')
+const requestLogger = require('./lib/requestLogger')
 require('./config/environment')
 require('./database')
 
@@ -18,6 +19,8 @@ const corsOptions = {
 }
 
 const app = express()
+
+app.use(requestLogger)
 
 app.use(cors(corsOptions))
 app.use(express.static(assetFolder))

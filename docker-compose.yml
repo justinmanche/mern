@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      CUSTOMER_DOMAIN: mern-customer.com
+      ADMIN_DOMAIN: mern-admin.com
+      API_DOMAIN: backend
+      NODE_ENV: production
+    ports:
+      - 80:80
+
+  backend:
+    build: .
+    environment:
+      MONGODB_HOST: mongo
+      MONGODB_PORT: 27017
+      MONGODB_DB: mern
+      PORT: 4000
+      SESSION_SECRET: mern
+      NODE_ENV: production
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
