@@ -4,13 +4,17 @@ services:
   frontend:
     build:
       context: ./frontend
+      args:
+        NODE_ENV: production
     environment:
       CUSTOMER_DOMAIN: mern-customer.com
       ADMIN_DOMAIN: mern-admin.com
-      API_DOMAIN: backend
-      NODE_ENV: production
+      API_HOST: backend
+      API_PORT: 4000
     ports:
       - 80:80
+    depends_on:
+      - backend
 
   backend:
     build: .
@@ -21,6 +25,8 @@ services:
       PORT: 4000
       SESSION_SECRET: mern
       NODE_ENV: production
+      ADMIN_DOMAIN: http://mern-admin.com
+      CUSTOMER_DOMAIN: http://mern-customer.com
     depends_on:
       - mongo
 

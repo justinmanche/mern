@@ -4,7 +4,9 @@ const mongoDb = process.env.MONGODB_DB || 'mern'
 
 module.exports = {
 	mongo: `mongodb://${mongoHost}:${mongoPort}/${mongoDb}`,
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 4000,
 	sessionSecret: process.env.SESSION_SECRET || 'mern',
-	nodeEnv: process.env.NODE_ENV
+	nodeEnv: process.env.NODE_ENV,
+	customerDomain: process.env.CUSTOMER_DOMAIN || 'http://localhost:8081',
+	adminDomain: process.env.ADMIN_DOMAIN || 'http://localhost:8080'
 }

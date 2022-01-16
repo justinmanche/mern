@@ -6,12 +6,12 @@ const routes = require('./routes/index')
 const configPassport = require('./passport-config')
 const assetFolder = path.resolve(__dirname, 'frontend/dist/')
 const requestLogger = require('./lib/requestLogger')
-require('./config/environment')
+const { adminDomain, customerDomain } = require('./config')
 require('./database')
 
 const corsOptions = {
 	origin: function (origin, callback) {
-		callback(null, ['http://localhost:8080', 'http://localhost:8081'])
+		callback(null, [adminDomain, customerDomain])
 	},
 	credentials: true,
 	headers: 'Origin, X-Requested-With, Content-Type, Accept',

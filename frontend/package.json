@@ -10,7 +10,7 @@
     "customer": "webpack serve --env project=customer",
     "build:admin": "webpack --env project=admin",
     "build:customer": "webpack --env project=customer",
-    "build": "npm run build:admin && npm run build:customer"
+    "build:prod": "NODE_ENV=production npm run build:admin && npm run build:customer"
   },
   "dependencies": {
     "@babel/core": "^7.16.0",

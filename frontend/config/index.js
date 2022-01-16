@@ -1,3 +1,3 @@
 module.exports = {
-	apiHost: process.env.NODE_ENV === 'production' ? process.env.API_DOMAIN : 'http://localhost:3000'
+	apiURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000/api'
 }

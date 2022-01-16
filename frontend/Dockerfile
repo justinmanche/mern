@@ -1,12 +1,20 @@
 FROM node:15-alpine as builder
 
+ARG NODE_ENV
+ARG API_HOST
+ARG API_PORT
+
+ENV NODE_ENV=${NODE_ENV}
+ENV API_HOST=${API_HOST}
+ENV API_PORT=${API_PORT}
+
 RUN mkdir /app
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
+RUN npm run build:prod
 
 FROM nginx
 
