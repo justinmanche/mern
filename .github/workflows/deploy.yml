@@ -8,8 +8,6 @@ jobs:
     name: "Deploy"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
@@ -27,14 +25,8 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
-      - name: Remove previous versions
-        run: ssh production 'rm -rf /home/$USER/mern'
+      - name: Check out the source
+        run: ssh production 'cd /home/$USER/mern && git fetch && git reset --hard origin/master'
 
-      - name: LS
-        run: ls -l
-
-      - name: pwd
-        run: pwd
-
-      # - name: Deploy
-      #   run: ssh production 'cd /home/$USER/mern && docker-compose up --build'
+      - name: Deploy
+        run: ssh production 'cd /home/$USER/mern && docker-compose up --build'
