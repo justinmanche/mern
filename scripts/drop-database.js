@@ -1,12 +1,8 @@
 const mongoose = require('mongoose')
-require('../config/environment')
+const { nodeEnv, mongo } = require('../config')
 
-const env = process.env.NODE_ENV
-
-console.log('ENV:', env)
-
-if (env === 'test' || env === 'development') {
-	mongoose.connect(process.env.DATABASE_URL, () => {
+if (nodeEnv === 'test' || nodeEnv === 'development') {
+	mongoose.connect(mongo, () => {
 		const db = mongoose.connection.db
 
 		console.log('Resetting database:', db.namespace)

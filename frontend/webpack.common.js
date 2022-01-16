@@ -16,7 +16,9 @@ module.exports = project => {
 
 	const WebpackDefinePluginConfig = new webpack.DefinePlugin({
 		'process.env': {
-			NODE_ENV: JSON.stringify(env)
+			NODE_ENV: JSON.stringify(env),
+			API_HOST: JSON.stringify(process.env.API_HOST),
+			API_PORT: JSON.stringify(process.env.API_PORT)
 		}
 	})
 
@@ -61,7 +63,8 @@ module.exports = project => {
 		resolve: {
 			modules: ['node_modules', resolve('src'), resolve('public')],
 			alias: {
-				shared: path.join(__dirname, 'shared')
+				shared: path.join(__dirname, 'shared'),
+				config: path.join(__dirname, 'config')
 			}
 		},
 		module: {

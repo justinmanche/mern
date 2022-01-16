@@ -9,5 +9,7 @@ module.exports = ({ project }) => {
 	const prod = require('./webpack.prod.js')(project)
 	const dev = require('./webpack.dev.js')(project)
 
+	console.log('ENV:', process.env)
+
 	return merge(common, process.env.NODE_ENV === 'production' ? prod : dev)
 }

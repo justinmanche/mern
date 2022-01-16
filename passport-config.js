@@ -4,6 +4,7 @@ const MongoStore = require('connect-mongo')
 const uuid = require('uuid')
 const mongoose = require('mongoose')
 const { User } = require('./models')
+const { sessionSecret } = require('./config')
 
 module.exports = app => {
 	const sessionConfig = {
@@ -12,7 +13,7 @@ module.exports = app => {
 			collectionName: 'sessions',
 		}),
 		genid: () => uuid.v4(),
-		secret: 'r8q,+&1LM3)CD*zAGpx1xm{NeQhc;#', //process.env.SESSION_SECRET,
+		secret: sessionSecret,
 		resave: false,
 		saveUninitialized: true,
 	}
