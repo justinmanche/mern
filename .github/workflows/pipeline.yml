@@ -49,7 +49,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${SHA}
+            $SHA
             latest
           labels: ${{ steps.meta.outputs.labels }}
 
@@ -59,7 +59,7 @@ jobs:
           context: ./frontend
           push: true
           tags: |
-            ${SHA}
+            $SHA
             latest
           labels: ${{ steps.meta.outputs.labels }}
   deploy:
