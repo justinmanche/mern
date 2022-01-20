@@ -53,8 +53,8 @@ jobs:
             latest
 
       - name: Echo vars
-        run: echo ${{ steps.frontend-meta.outputs }}
-        
+        run: echo ${{ steps.frontend-meta.outputs.json }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
