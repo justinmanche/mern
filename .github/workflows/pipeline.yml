@@ -21,7 +21,7 @@ jobs:
   build:
     name: "Build"
     needs: test
-    if: contains(fromJson('["master", "ci"]'), github.ref)
+    if: contains(github.ref, fromJson('["master", "ci"]'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
