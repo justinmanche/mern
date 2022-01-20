@@ -2,9 +2,8 @@ name: Build
 on:
   workflow_run:
     workflows: [Test]
-    types:
-      - completed
-      - requested
+    branches: [master, ci]
+    types: [completed]
 
 jobs:
   build:
