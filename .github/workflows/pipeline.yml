@@ -1,4 +1,4 @@
-name: Test
+name: Pipeline
 on: [push]
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
   build:
     name: "Build"
     needs: test
-    if: {{ github.ref == 'ref/head/master' }}
+    if: contains(github.ref, 'master')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
