@@ -35,41 +35,33 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract tags/labels for backend
-        id: backend-meta
+        id: meta
         uses: docker/metadata-action@v3
         with:
           images: jmanche/mern-backend
-          tags: |
-            type=sha
 
-      - name: Extract tags/labels for backend
-        id: frontend-meta
-        uses: docker/metadata-action@v3
-        with:
-          images: jmanche/mern-frontend
-          tags: |
-            type=sha
-
-      - name: List docker meta vars
-        run: echo ${{ steps.backend-meta.output.tags }} && echo ${{ steps.backend-meta.output.labels }}
-      - name: List docker meta vars
-        run: echo ${{ steps.frontend-meta.output.tags }} && echo ${{ steps.frontend-meta.output.labels }}
+      - name: Extract short sha
+        run: echo "SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ steps.backend-meta.outputs.tags }}
-          labels: ${{ steps.backend-meta.outputs.labels }}
+          tags: |
+            ${SHA}
+            latest
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: ./frontend
           push: true
-          tags: ${{ steps.frontend-meta.outputs.tags }}
-          labels: ${{ steps.frontend-meta.outputs.labels }}
+          tags: |
+            ${SHA}
+            latest
+          labels: ${{ steps.meta.outputs.labels }}
   deploy:
     name: "Deploy"
     needs: build
