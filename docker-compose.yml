@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   frontend:
+    image: ${FRONTEND_IMAGE}
     build:
       context: ./frontend
       args:
@@ -17,6 +18,7 @@ services:
       - backend
 
   backend:
+    image: ${BACKEND_IMAGE}
     build: .
     environment:
       MONGODB_HOST: mongo
