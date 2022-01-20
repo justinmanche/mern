@@ -2,13 +2,14 @@ version: '3.7'
 
 services:
   frontend:
+    image: ${FRONTEND_IMAGE}
     build:
       context: ./frontend
       args:
         NODE_ENV: production
     environment:
-      CUSTOMER_DOMAIN: mern-customer.com
-      ADMIN_DOMAIN: mern-admin.com
+      CUSTOMER_DOMAIN: mern-admin.justinmanche.com
+      ADMIN_DOMAIN: mern-customer.justinmanche.com
       API_HOST: backend
       API_PORT: 4000
     ports:
@@ -17,6 +18,7 @@ services:
       - backend
 
   backend:
+    image: ${BACKEND_IMAGE}
     build: .
     environment:
       MONGODB_HOST: mongo
@@ -25,8 +27,8 @@ services:
       PORT: 4000
       SESSION_SECRET: mern
       NODE_ENV: production
-      ADMIN_DOMAIN: http://mern-admin.com
-      CUSTOMER_DOMAIN: http://mern-customer.com
+      ADMIN_DOMAIN: http://mern-admin.justinmanche.com
+      CUSTOMER_DOMAIN: http://mern-customer.justinmanche.com
     depends_on:
       - mongo
 

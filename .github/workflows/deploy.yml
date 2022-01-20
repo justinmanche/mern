@@ -1,11 +1,14 @@
 name: Deploy
 on:
-  push:
-    branches: [master]
+  workflow_run:
+    workflows: [Build]
+    branches: [master, ci]
+    types: [completed]
 
 jobs:
   deploy:
     name: "Deploy"
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -26,7 +29,7 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
 
       - name: Check out the source
-        run: ssh production 'cd /home/$USER/mern && git fetch && git reset --hard origin/master'
+        run: ssh production 'cd ~/mern && git fetch && git reset --hard origin/master'
 
       - name: Deploy
-        run: ssh production 'cd /home/$USER/mern && docker-compose up --build'
+        run: ssh production 'cd ~/mern && docker stack deploy --compose-file docker-compose.yml mern'
