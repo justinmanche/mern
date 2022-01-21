@@ -105,8 +105,7 @@ jobs:
       #   run: echo $(cat ~/.ssh/known_hosts)
 
       - name: Add remote as known host
-        run: |
-          echo "${{ secrets.SSH_HOST }}" "${{ secrets.SSH_PUBLIC_KEY }}" > "~/.ssh/known_hosts"
+        run: ssh-keyscan -t ecdsa $SSH_HOST > ~/.ssh/known_hosts
 
       - name: Deploy to swarm
         run: |
