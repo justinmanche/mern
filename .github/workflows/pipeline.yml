@@ -55,6 +55,12 @@ jobs:
       - name: Echo vars
         run: echo ${{ steps.frontend-meta.outputs.json }}
 
+      - name: Set IMAGE_TAG
+        run: echo "IMAGE_TAG=`echo sha-$(git rev-parse --short HEAD)`" >> $GITHUB_ENV
+
+      - name: Echo IMAGE_TAG
+        run: echo "Image tag: ${IMAGE_TAG}"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:

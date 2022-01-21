@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   frontend:
-    image: ${FRONTEND_IMAGE}
+    image: jmanche/mern-frontend:${IMAGE_TAG}
     build:
       context: ./frontend
       args:
@@ -18,7 +18,7 @@ services:
       - backend
 
   backend:
-    image: ${BACKEND_IMAGE}
+    image: jmanche/mern-backend:${IMAGE_TAG}
     build: .
     environment:
       MONGODB_HOST: mongo
