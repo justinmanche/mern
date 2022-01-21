@@ -102,10 +102,11 @@ jobs:
       - name: Add remote as known host
         run: |
           printf "Host mern\n  Hostname 174.138.29.232\n  \n  User root\n  IdentityFile ~/.ssh/docker\n" > "~/.ssh/config"
-          cat ~/.ssh/config
-          echo $(cat ~/.ssh/config)
+
           ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
 
       - name: Deploy to swarm
         run: |
+          cat ~/.ssh/config
+          echo $(cat ~/.ssh/config)
           docker --host "ssh://mern" ps
