@@ -104,6 +104,7 @@ jobs:
           echo "Host mern\n  Hostname 174.138.29.232\n  User root\n  IdentityFile ~/.ssh/docker\n" > "~/.ssh/config"
 
           ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
+          cat ~/.ssh/config
 
       - name: Deploy to swarm
         run: |
