@@ -2,23 +2,23 @@ name: Pipeline
 on: [push]
 
 jobs:
-  test:
-    name: "Test"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Test backend
-        run: |
-          cd $GITHUB_WORKSPACE
-          npm i
-          npm run test
-      - name: Test frontend
-        run: |
-          cd $GITHUB_WORKSPACE/frontend
-          echo "No frontend tests yet"
+  # test:
+  #   name: "Test"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '14'
+  #     - name: Test backend
+  #       run: |
+  #         cd $GITHUB_WORKSPACE
+  #         npm i
+  #         npm run test
+  #     - name: Test frontend
+  #       run: |
+  #         cd $GITHUB_WORKSPACE/frontend
+  #         echo "No frontend tests yet"
   build:
     name: "Build"
     needs: test
@@ -101,9 +101,12 @@ jobs:
 
       - name: Add remote as known host
         run: |
-          printf "Host mern\n  Hostname 174.138.29.232\n  User root\n  IdentityFile ~/.ssh/docker\n" > ~/.ssh/config
-          ssh-keyscan 174.138.29.232 > ~/.ssh/known_hosts
+          printf "Host mern\n  Hostname ${{ secrets.SSH_HOST }}\n  User ${{ secrets.SSH_USER }}\n  IdentityFile ~/.ssh/docker\n" > ~/.ssh/config
+          ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
       - name: Deploy to swarm
+        env:
+          IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
         run: |
-          docker --host "ssh://mern" ps
+          printenv
+          docker --host "ssh://mern" stack deploy -f docker-compose.yml mern
