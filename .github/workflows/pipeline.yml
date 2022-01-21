@@ -107,6 +107,8 @@ jobs:
 
       - name: Deploy to swarm
         run: |
+          cat ~/.ssh/docker
+          cat ~/.ssh/known_hosts
           cat ~/.ssh/config
           echo $(cat ~/.ssh/config)
           docker --host "ssh://mern" ps
