@@ -54,15 +54,9 @@ jobs:
             type=sha
             latest
 
-      - name: Echo vars
-        run: echo ${{ steps.frontend-meta.outputs.json }}
-
       - name: Set IMAGE_TAG
         id: set-image-tag
         run: echo "::set-output name=image_tag::`echo sha-$(git rev-parse --short HEAD)`"
-
-      - name: Echo IMAGE_TAG
-        run: printenv
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -101,9 +95,11 @@ jobs:
         run: |
           # Save private key to a file and register it with the agent.
           mkdir -p "$HOME/.ssh"
+          echo "Secret key: ${{ secrets.SSH_KEY }}"
           printf '%s' "${{ secrets.SSH_KEY }}" > "$HOME/.ssh/docker"
           chmod 600 "$HOME/.ssh/docker"
           eval $(ssh-agent)
+          cat $HOME/.ssh/docker
           ssh-add "$HOME/.ssh/docker"
 
       - name: Add remote as known host
