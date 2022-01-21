@@ -95,7 +95,7 @@ jobs:
         run: printenv
 
       - name: Echo image tag
-        run: echo ${{ jobs.build.outputs.image_tag }}
+        run: echo ${{ needs.build.outputs.image_tag }}
 
       - name: Deploy to swarm
         run: |
