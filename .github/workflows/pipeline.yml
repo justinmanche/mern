@@ -105,11 +105,11 @@ jobs:
       #   run: echo $(cat ~/.ssh/known_hosts)
 
       - name: Add remote as known host
-        run: ssh-keyscan -t ecdsa "${{ secrets.SSH_HOST }}" > "~/.ssh/known_hosts"
+        run: ssh-keyscan -t ecdsa 174.138.29.232 > "~/.ssh/known_hosts"
 
       - name: Deploy to swarm
         run: |
-          REMOTE_HOST=$(echo "ssh://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}")
+          REMOTE_HOST="ssh://root@174.138.29.232"
 
           printenv
 
