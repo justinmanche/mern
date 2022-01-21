@@ -101,9 +101,13 @@ jobs:
           eval $(ssh-agent)
           ssh-add "~/.ssh/docker"
 
+      # - name: Log known hosts:
+      #   run: echo $(cat ~/.ssh/known_hosts)
+
       - name: Add remote as known host
         run: |
-          printf '%s %s\n' "${{ secrets.SSH_HOST }}" "${{ secrets.SSH_PUBLIC_KEY }}" >> ~/.ssh/known_hosts
+          touch ~/ssh/known_hosts
+          echo "${{ secrets.SSH_HOST }}" "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/known_hosts
 
       - name: Deploy to swarm
         run: |
