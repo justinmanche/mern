@@ -21,7 +21,7 @@ jobs:
   #         echo "No frontend tests yet"
   build:
     name: "Build"
-    needs: test
+    # needs: test
     if: contains(github.ref, 'master') || contains(github.ref, 'ci')
     runs-on: ubuntu-latest
     outputs:
