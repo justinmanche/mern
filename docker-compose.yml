@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   frontend:
-    image: ${FRONTEND_IMAGE}
+    image: jmanche/mern-frontend:${IMAGE_TAG}
     build:
       context: ./frontend
       args:
         NODE_ENV: production
     environment:
-      CUSTOMER_DOMAIN: mern-admin.justinmanche.com
-      ADMIN_DOMAIN: mern-customer.justinmanche.com
+      CUSTOMER_DOMAIN: mern-customer.justinmanche.com
+      ADMIN_DOMAIN: mern-admin.justinmanche.com
       API_HOST: backend
       API_PORT: 4000
     ports:
@@ -18,7 +18,7 @@ services:
       - backend
 
   backend:
-    image: ${BACKEND_IMAGE}
+    image: jmanche/mern-backend:${IMAGE_TAG}
     build: .
     environment:
       MONGODB_HOST: mongo
