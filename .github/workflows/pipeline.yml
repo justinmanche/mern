@@ -109,4 +109,4 @@ jobs:
           IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
         run: |
           printenv
-          docker --host "ssh://mern" stack deploy -f docker-compose.yml mern
+          docker --host "ssh://mern" stack deploy -c docker-compose.yml mern
