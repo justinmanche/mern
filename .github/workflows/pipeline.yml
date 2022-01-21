@@ -95,15 +95,15 @@ jobs:
         env:
           KEY: ${{ secrets.SSH_KEY }}
         run: |
-          mkdir -p "~/.ssh"
-          echo "${{ secrets.SSH_KEY }}" > "~/.ssh/docker"
-          chmod 600 "~/.ssh/docker"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/docker
+          chmod 600 ~/.ssh/docker
 
       - name: Add remote as known host
         run: |
-          echo "Host mern\n  Hostname 174.138.29.232\n  User root\n  IdentityFile ~/.ssh/docker\n" > "~/.ssh/config"
+          echo "Host mern\n  Hostname 174.138.29.232\n  User root\n  IdentityFile ~/.ssh/docker\n" > ~/.ssh/config
 
-          ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
+          ssh-keyscan 174.138.29.232 > ~/.ssh/known_hosts
           cat ~/.ssh/config
 
       - name: Deploy to swarm
