@@ -92,14 +92,18 @@ jobs:
       #   run: echo ${{ needs.build.outputs.image_tag }}
 
       - name: Configure SSH
+        env:
+          KEY: ${{ secrets.SSH_KEY }}
         run: |
           # Save private key to a file and register it with the agent.
-          mkdir -p "$HOME/.ssh"
-          echo ${{ secrets.SSH_KEY }} > "$HOME/.ssh/docker"
-          chmod 600 "$HOME/.ssh/docker"
+          mkdir -p "~/.ssh"
+          echo "SECRET: ${KEY}"
+          
+          echo $KEY > "~/.ssh/docker"
+
+          chmod 600 "~/.ssh/docker"
           eval $(ssh-agent)
-          cat $HOME/.ssh/docker
-          ssh-add "$HOME/.ssh/docker"
+          ssh-add "~/.ssh/docker"
 
       - name: Add remote as known host
         run: |
