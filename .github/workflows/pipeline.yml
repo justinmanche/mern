@@ -95,44 +95,7 @@ jobs:
         run: |
           # Save private key to a file and register it with the agent.
           mkdir -p "$HOME/.ssh"
-          echo "Secret key: ${{ secrets.SSH_KEY }}"
-          printf '%s' "-----BEGIN OPENSSH PRIVATE KEY-----
-            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
-            -----END OPENSSH PRIVATE KEY-----" > "$HOME/.ssh/docker"
+          echo ${{ secrets.SSH_KEY }} > "$HOME/.ssh/docker"
           chmod 600 "$HOME/.ssh/docker"
           eval $(ssh-agent)
           cat $HOME/.ssh/docker
