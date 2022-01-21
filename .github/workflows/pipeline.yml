@@ -102,7 +102,9 @@ jobs:
           ssh-add "~/.ssh/docker"
 
       - name: Add remote as known host
-        run: ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
+        run: |
+          ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
+          eval $(ssh-agent)
 
       - name: Deploy to swarm
         run: |
