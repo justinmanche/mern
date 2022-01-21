@@ -8,8 +8,8 @@ services:
       args:
         NODE_ENV: production
     environment:
-      CUSTOMER_DOMAIN: mern-admin.justinmanche.com
-      ADMIN_DOMAIN: mern-customer.justinmanche.com
+      CUSTOMER_DOMAIN: mern-customer.justinmanche.com
+      ADMIN_DOMAIN: mern-admin.justinmanche.com
       API_HOST: backend
       API_PORT: 4000
     ports:
