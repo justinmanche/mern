@@ -101,11 +101,8 @@ jobs:
           eval $(ssh-agent)
           ssh-add "~/.ssh/docker"
 
-      # - name: Log known hosts:
-      #   run: echo $(cat ~/.ssh/known_hosts)
-
       - name: Add remote as known host
-        run: ssh-keyscan -t ecdsa 174.138.29.232 > "~/.ssh/known_hosts"
+        run: ssh-keyscan 174.138.29.232 > "~/.ssh/known_hosts"
 
       - name: Deploy to swarm
         run: |
