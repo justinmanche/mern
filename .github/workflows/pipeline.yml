@@ -109,7 +109,7 @@ jobs:
 
       - name: Deploy to swarm
         run: |
-          docker context create mern --description "mern context" --docker "host=ssh://mern"
+          docker context create mern --description "mern context" --docker "host=ssh://root@174.138.29.232"
           docker context use mern
 
           docker ps
