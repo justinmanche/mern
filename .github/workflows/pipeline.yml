@@ -97,7 +97,8 @@ jobs:
           ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
       - name: Ensure TLS certs exist
-        run: echo "TODO: Check for TLS certs at /etc/ssl/ on remote host, create 3 certs if they don't exist"
+        run: |
+          echo "TODO: Check for TLS certs on remote host, create 3 certs if they don't exist"
 
       - name: Deploy to swarm
         env:
