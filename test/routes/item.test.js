@@ -37,8 +37,6 @@ describe('Items', () => {
 
         const userResponse = items[0]['user']
 
-        console.log(userResponse, "\n\n\n", customer)
-
         expect(userResponse).toEqual(customer)
       })
     })
@@ -46,9 +44,7 @@ describe('Items', () => {
     describe('when queried by a customer', () => {
       it('results do not include user information', async () => {
         const items = await customerAgent.get('/api/items').then(r => r.body)
-
-        console.log("Items:", items)
-
+				
         expect(items[0]).not.toHaveProperty('user')
       })
     })

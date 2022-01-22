@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
 						<MenuIcon />
 					</IconButton>
 					<Box sx={{ flexGrow: 1, paddingLeft: 0 }}>
-						<img src='./shield.png' />
+						<img src='/shield.png' />
 					</Box>
 					<div>
 						<IconButton
@@ -89,7 +89,7 @@ const Layout = ({ children }) => {
 					))}
 				</List>
 			</Drawer>
-			<Box component="main" sx={{ px: 3 }}>
+			<Box component="main" sx={{ width: '100%', px: 3 }}>
 				<AppBarSpacer />
 				<Breadcrumbs />
 				{children}
