@@ -16,6 +16,10 @@ services:
       - 80:80
     depends_on:
       - backend
+    volumes:
+      - /etc/ssl/cert.pem:/etc/ssl/cert.pem
+      - /etc/ssl/key.pem:/etc/ssl/key.pem
+      - /etc/ssl/cloudflare.crt:/etc/ssl/cloudflare.crt
 
   backend:
     image: jmanche/mern-backend:${IMAGE_TAG}

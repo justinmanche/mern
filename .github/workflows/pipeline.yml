@@ -22,7 +22,7 @@ jobs:
   build:
     name: "Build"
     needs: test
-    if: contains(github.ref, 'master')
+    if: contains(github.ref, 'master') || contains(github.ref, 'tls')
     runs-on: ubuntu-latest
     outputs:
       image_tag: ${{ steps.set-image-tag.outputs.image_tag }}
@@ -95,6 +95,9 @@ jobs:
           chmod 600 ~/.ssh/docker
           printf "Host mern\n  Hostname ${{ secrets.SSH_HOST }}\n  User ${{ secrets.SSH_USER }}\n  IdentityFile ~/.ssh/docker\n" > ~/.ssh/config
           ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+
+      - name: Ensure TLS certs exist
+        run: echo "TODO: Check for TLS certs at /etc/ssl/ on remote host, create 3 certs if they don't exist"
 
       - name: Deploy to swarm
         env:

@@ -1,6 +1,12 @@
 server {
-    listen 80;
-    server_name ${CUSTOMER_DOMAIN};
+    listen 443 ssl http2;
+    listen [::] 443 ssl http2;
+    ssl_certificate /etc/ssl/cert.pem
+    ssl_certificate_key /etc/ssl/key.pem
+    ssl_client_certificate /etc/ssl/cloudflare.crt;
+    ssl_verify_client on;
+
+    server_name www.${CUSTOMER_DOMAIN} ${CUSTOMER_DOMAIN};
 
     location /api {
         proxy_pass http://${API_HOST}:${API_PORT};
@@ -13,8 +19,14 @@ server {
 }
 
 server {
-    listen 80;
-    server_name ${ADMIN_DOMAIN};
+    listen 443 ssl http2;
+    listen [::] 443 ssl http2;
+    ssl_certificate /etc/ssl/cert.pem
+    ssl_certificate_key /etc/ssl/key.pem
+    ssl_client_certificate /etc/ssl/cloudflare.crt;
+    ssl_verify_client on;
+
+    server_name www.${ADMIN_DOMAIN} ${ADMIN_DOMAIN};
 
     location /api {
         proxy_pass http://${API_HOST}:${API_PORT};
