@@ -10,11 +10,11 @@ import Button from '@mui/material/Button'
 const Item = ({ match }) => {
 	const { itemId } = match.params
 	const history = useHistory()
-	const { data: item, isFetching, isError } = useGetItemQuery(itemId)
+	const { data: item, isSuccess, isFetching, isError } = useGetItemQuery(itemId)
 	const [destroyItem] = useDestroyItemMutation()
 
 	if (isFetching) return <Spinner text="Loading..." />
-	if (isError) return <Error text="Cannot find item" />
+	if (isError || (isSuccess && !item)) return <Error text="Cannot find item" />
 
 	const destroy = async e => {
 		e.preventDefault()
