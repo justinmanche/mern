@@ -89,16 +89,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/docker
-          chmod 600 ~/.ssh/docker
-          printf "Host mern\n  Hostname ${{ secrets.SSH_HOST }}\n  User ${{ secrets.SSH_USER }}\n  IdentityFile ~/.ssh/docker\n" > ~/.ssh/config
-          ssh-keyscan ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: $GITHUB_WORKSPACE/scripts/configure_ssh.sh
 
       - name: Ensure TLS certs exist
-        run: |
-          echo "TODO: Check for TLS certs on remote host, create 3 certs if they don't exist"
+        env:
+          TLS_KEY: ${{ secrets.TLS_KEY }}
+        run: $GITHUB_WORKSPACE/scripts/add_certs.sh
 
       - name: Deploy to swarm
         env:
