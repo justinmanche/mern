@@ -14,7 +14,7 @@ fi
 
 if [ ! $(ssh mern 'test -f /etc/ssl/key.pem') ]; then
   echo 'Adding /etc/ssl/key.pem'
-  echo $TLS_KEY > $GITHUB_WORKSPACE/frontend/config/certs/key.pem
+  echo "${TLS_KEY}" > $GITHUB_WORKSPACE/frontend/config/certs/key.pem
 
   scp $GITHUB_WORKSPACE/frontend/config/certs/key.pem mern:/etc/ssl/key.pem
 else
