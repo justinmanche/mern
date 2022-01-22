@@ -18,10 +18,13 @@ router.get('/', requireAuth, async (req, res) => {
 })
 
 router.get('/:id', requireAuth, (req, res) => {
-	Item.findById(req.params.id, async (err, item) => {
-		if (err) return res.status(400).send({ message: 'Failed to retrieve item', err })
+	const query = Item.findById(req.params.id)
+	if (req.isAdmin) query.populate('user')
 
-		res.send(await item.populate('user'))
+	query.exec((err, item) => {
+		if (err) return res.status(400).send({ message: 'Failed to retrieve item', err })
+		
+		res.send(item)
 	})
 })
 

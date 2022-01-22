@@ -6,10 +6,9 @@ module.exports = ({ project }) => {
 	}
 
 	const common = require('./webpack.common.js')(project)
-	const prod = require('./webpack.prod.js')(project)
-	const dev = require('./webpack.dev.js')(project)
 
-	console.log('ENV:', process.env)
+	const configExtension = process.env.NODE_ENV === 'production' ? 'prod' : 'dev'
+	const envConfig = require(`./webpack.${configExtension}.js`)(project)
 
-	return merge(common, process.env.NODE_ENV === 'production' ? prod : dev)
+	return merge(common, envConfig)
 }

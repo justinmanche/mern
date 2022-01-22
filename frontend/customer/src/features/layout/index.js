@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
 				<Container maxWidth="xl">
 					<Toolbar disableGutters>
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-							<img src='./sword.png' />
+							<img src='/sword.png' />
 						</Box>
 						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 							<IconButton
@@ -70,7 +70,7 @@ const Layout = ({ children }) => {
 							</Menu>
 						</Box>
 						<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-							<img src='./sword.png' />
+							<img src='/sword.png' />
 						</Box>
 						<Box sx={{ pr: 1, display: { xs: 'none', md: 'flex' } }}>
 							{pages.map((page) => (
