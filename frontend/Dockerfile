@@ -21,7 +21,7 @@ FROM nginx
 COPY --from=builder /app/admin/dist /usr/share/nginx/html/admin
 COPY --from=builder /app/customer/dist /usr/share/nginx/html/customer
 COPY --from=builder /app/entrypoint.sh /entrypoint.sh
-COPY --from=builder /app/nginx.conf.template /nginx.conf.template
+COPY --from=builder /app/config/nginx.conf.template /nginx.conf.template
 
 EXPOSE 8080
 
