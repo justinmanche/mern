@@ -13,9 +13,13 @@ services:
       API_HOST: backend
       API_PORT: 4000
     ports:
-      - 80:80
+      - 443:443
     depends_on:
       - backend
+    volumes:
+      - /etc/ssl/cert.pem:/etc/ssl/cert.pem
+      - /etc/ssl/key.pem:/etc/ssl/key.pem
+      - /etc/ssl/cloudflare.crt:/etc/ssl/cloudflare.crt
 
   backend:
     image: jmanche/mern-backend:${IMAGE_TAG}
