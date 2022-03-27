@@ -17,10 +17,7 @@ export const authSlice = createSlice({
 			)
 			.addMatcher(
 				userSlice.endpoints.logout.matchPending,
-				(state) => {
-					console.log('Logout pending')
-					state.user = null
-				}
+				(state) => { state.user = null }
 			)
 	}
 })

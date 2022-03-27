@@ -13,13 +13,10 @@ import Spinner from 'shared/components/Spinner'
 ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			{console.log(store)}
-			{console.log(persistor)}
 			<ThemeProvider theme={theme}>
 				<PersistGate loading={<Spinner />} persistor={persistor}>
 					<CssBaseline />
 					<AuthMiddleware>
-						{console.log('app')}
 						<App />
 					</AuthMiddleware>
 				</PersistGate>
