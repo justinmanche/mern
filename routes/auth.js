@@ -35,9 +35,9 @@ router.post('/login', async function(req, res) {
 			} else {
 				req.login(user, function(err){
 					if (err){
-						res.status(401).send({ message: err})
+						res.status(401).send({ message: err })
 					} else {
-						res.send({ message:'Authentication successful' })
+						res.send({ user, message:'Authentication successful' })
 					}
 				})
 			}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useLogoutUserMutation } from 'shared/features/user/userSlice'
-import { useIsAuthenticated } from 'shared/features/user/hooks'
+import { useLogoutMutation } from 'shared/features/user/userSlice'
+import { useAuth } from 'shared/hooks/useAuth'
 import AppBar from '@mui/material/AppBar'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
@@ -17,15 +17,15 @@ import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 
 const Layout = ({ children }) => {
-	const [logoutUser] = useLogoutUserMutation()
-	const isAuthenticated = useIsAuthenticated()
+	const [logout] = useLogoutMutation()
+	const authenticated = useAuth()
 	const [navAnchor, setNavAnchor] = useState(null)
 	const [userAnchor, setUserAnchor] = useState(null)
 
 	const pages = ['Products', 'Pricing', 'Blog']
 
-	const logout = () => {
-		logoutUser()
+	const handleLogout = () => {
+		logout()
 		setUserAnchor(null)
 	}
 
@@ -85,7 +85,7 @@ const Layout = ({ children }) => {
 
 						<Box>
 							{
-								isAuthenticated	?
+								authenticated	?
 									<>
 										<Tooltip title="Open settings">
 											<IconButton onClick={e => setUserAnchor(e.currentTarget)} sx={{ p: 0 }}>
@@ -117,7 +117,7 @@ const Layout = ({ children }) => {
 												<Typography textAlign="center">Dashboard</Typography>
 											</MenuItem>
 											<MenuItem onClick={() => setNavAnchor(null)}>
-												<Typography textAlign="center" onClick={logout}>Logout</Typography>
+												<Typography textAlign="center" onClick={handleLogout}>Logout</Typography>
 											</MenuItem>
 										</Menu>
 									</> :

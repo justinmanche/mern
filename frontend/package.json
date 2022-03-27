@@ -19,6 +19,7 @@
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.1.0",
+    "@mui/lab": "^5.0.0-alpha.54",
     "@mui/material": "^5.1.0",
     "@reduxjs/toolkit": "^1.6.1",
     "babel-loader": "^8.2.3",
@@ -33,10 +34,10 @@
     "react-dom": "^17",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.1.2",
+    "redux-persist": "^6.0.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.4.0",
-    "@mui/lab": "^5.0.0-alpha.54"
+    "webpack-dev-server": "^4.4.0"
   }
 }

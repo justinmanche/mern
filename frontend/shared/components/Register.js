@@ -4,26 +4,26 @@ import Button from '@mui/material/Button'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Box from '@mui/material/Box'
 import { Link } from 'react-router-dom'
-import { useRegisterUserMutation } from 'shared/features/user/userSlice'
+import { useRegisterMutation } from 'shared/features/user/userSlice'
 
 const Register = ({ type }) => {
 	const [username, setUsername] = useState('admin@test.com')
 	const [password, setPassword] = useState('password')
-	const [registerUser, { isLoading, isError, error }] = useRegisterUserMutation()
+	const [register, { isLoading, isError, error }] = useRegisterMutation()
 
 	const canSave = [username, password].every(Boolean) && !isLoading
 
-	const register = e => {
+	const submit = e => {
 		e.preventDefault()
 
 		if (!canSave) return
 
-		registerUser({ username, password, type })
+		register({ username, password, type })
 	}
 
 	return (
 		<Box sx={{ height: '100vh', margin: 'auto', alignItems: 'center', gap: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-			<form onSubmit={register}>
+			<form onSubmit={submit}>
 				<Box sx={{ gap: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
 					<TextField label='Email' autoComplete='username' error={isError} helperText={isError && error.data.message} required value={username} onChange={e => setUsername(e.target.value)} />
 					<TextField label='Password' type='password' required autoComplete='new-password' value={password} onChange={e => setPassword(e.target.value)} />

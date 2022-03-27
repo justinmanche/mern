@@ -1,16 +1,10 @@
 import React from 'react'
-import { useGetUserQuery } from 'features/users/usersSlice'
+import { useCurrentUser } from 'shared/hooks/useAuth'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Spinner from 'shared/components/Spinner'
-import Error from 'shared/components/Error'
 
-const User = ({ match }) => {
-	const { userId } = match.params
-	const { data: user, isFetching, isError } = useGetUserQuery(userId)
-
-	if (isFetching) return <Spinner text="Loading..." />
-	if (isError) return <Error text="Cannot find user" />
+const User = () => {
+	const user = useCurrentUser()
 
 	return (
 		<Box>

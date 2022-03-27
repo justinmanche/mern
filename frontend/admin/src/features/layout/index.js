@@ -14,18 +14,18 @@ import HomeIcon from '@mui/icons-material/Home'
 import MenuItem from '@mui/material/MenuItem'
 import Menu from '@mui/material/Menu'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import { useLogoutUserMutation } from 'shared/features/user/userSlice'
-import { useIsAuthenticated } from 'shared/features/user/hooks'
+import { useLogoutMutation } from 'shared/features/user/userSlice'
+import { useAuth } from 'shared/hooks/useAuth'
 import Breadcrumbs from './Breadcrumbs'
 import UsersIcon from '@mui/icons-material/PeopleAlt'
 
 const Layout = ({ children }) => {
 	const [open, setOpen] = useState(false)
 	const [menuAnchor, setMenuAnchor] = useState(null)
-	const [logoutUser] = useLogoutUserMutation()
-	const isAuthenticated = useIsAuthenticated()
+	const [logout] = useLogoutMutation()
+	const authenticated = useAuth()
 
-	if (!isAuthenticated) return <>{children}</>
+	if (!authenticated) return <>{children}</>
 
 	const links = [
 		{ text: 'Home', url: '/', icon: <HomeIcon /> },
@@ -33,8 +33,8 @@ const Layout = ({ children }) => {
 		{ text: 'Users', url: '/users', icon: <UsersIcon /> }
 	]
 	const closeMenu = () => setMenuAnchor(null)
-	const logout = () => {
-		logoutUser()
+	const handleLogout = () => {
+		logout()
 		setMenuAnchor(null)
 	}
 
@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
 							anchorEl={menuAnchor}
 							open={Boolean(menuAnchor)}
 							onClose={closeMenu}>
-							<MenuItem onClick={logout}>Logout</MenuItem>
+							<MenuItem onClick={handleLogout}>Logout</MenuItem>
 						</Menu>
 					</div>
 				</Toolbar>

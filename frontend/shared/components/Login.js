@@ -4,25 +4,25 @@ import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Link } from 'react-router-dom'
-import { useLoginUserMutation } from 'shared/features/user/userSlice'
+import { useLoginMutation } from 'shared/features/user/userSlice'
 
 const Login = ({ type }) => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
-	const [loginUser, { isLoading, isError, error }] = useLoginUserMutation()
+	const [login, { isLoading, isError, error }] = useLoginMutation()
 
 	const canSave = [username, password].every(Boolean) && !isLoading
 
-	const login = e => {
+	const submit = e => {
 		e.preventDefault()
 
 		if (!canSave) return
 
-		loginUser({ username, password, type })
+		login({ username, password, type })
 	}
 
 	return (
-		<form onSubmit={login}>
+		<form onSubmit={submit}>
 			<Box sx={{ height: '100vh', margin: 'auto', alignItems: 'center', gap: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
 				<Box sx={{ gap: 2, width: '80%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
 					<TextField fullWidth label='Email' autoComplete='username' error={isError} helperText={isError && error.data.message} required value={username} onChange={e => setUsername(e.target.value)} />
