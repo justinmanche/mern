@@ -1,20 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import App from 'App'
-import store from 'store'
-import theme from 'theme'
-import { Provider } from 'react-redux'
+import BaseIndex from 'shared/components/BaseIndex'
+import Home from 'components/Home'
+import PrivateRoute from 'shared/components/PrivateRoute'
+import PublicRoute from 'shared/components/PublicRoute'
+import Login from 'shared/components/Login'
+import Register from 'shared/components/Register'
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<App />
-			</ThemeProvider>
-		</Provider>
-	</React.StrictMode>,
+	<BaseIndex>
+		<PublicRoute exact path="/login" component={Login} type='admin' />
+		<PublicRoute exact path="/register" component={Register} type='admin' />
+		<PrivateRoute exact path="/" component={Home} />
+	</BaseIndex>,
 	document.getElementById('root')
 )

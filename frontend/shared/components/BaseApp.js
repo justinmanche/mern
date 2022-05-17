@@ -10,7 +10,7 @@ import PrivateRoute from 'shared/components/PrivateRoute'
 import PublicRoute from 'shared/components/PublicRoute'
 import routes from 'routes'
 
-const App = ({ children }) => (
+const BaseApp = ({ children }) => (
 	<Router>
 		<Layout>
 			<Switch>
@@ -32,4 +32,4 @@ const App = ({ children }) => (
 	</Router>
 )
 
-export default App
+export default BaseApp

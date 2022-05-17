@@ -1,12 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { apiSlice } from 'features/api/apiSlice'
-import layoutReducer from 'features/layout/layoutSlice'
+import sharedStore from 'shared/store'
+import { persistStore } from 'redux-persist'
 
-export default configureStore({
-	reducer: {
-		layout: layoutReducer,
-		[apiSlice.reducerPath]: apiSlice.reducer
-	},
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(apiSlice.middleware)
-})
+export const store = configureStore(sharedStore)
+
+export const persistor = persistStore(store)
