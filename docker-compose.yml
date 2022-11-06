@@ -2,7 +2,8 @@ version: '3.7'
 
 services:
   frontend:
-    image: jmanche/mern-frontend:${IMAGE_TAG}
+    image: mern-frontend:latest
+    container_name: mern-frontend
     build:
       context: ./frontend
       args:
@@ -22,7 +23,8 @@ services:
       - /etc/ssl/cloudflare.crt:/etc/ssl/cloudflare.crt
 
   backend:
-    image: jmanche/mern-backend:${IMAGE_TAG}
+    image: mern-backend:latest
+    container_name: mern-backend
     build: .
     environment:
       MONGODB_HOST: mongo
@@ -38,6 +40,7 @@ services:
 
   mongo:
     image: mongo:latest
+    container_name: mern-db
     volumes:
       - mongo-data:/data/db
 
